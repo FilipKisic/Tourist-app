@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
       locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: RouteGenerator.loginScreen,
+      initialRoute: RouteGenerator.splashScreen,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

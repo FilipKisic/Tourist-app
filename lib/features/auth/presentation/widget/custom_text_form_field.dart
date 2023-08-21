@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isObscure;
   final TextInputAction? textInputAction;
   final bool autoValidate;
+  final TextInputType textInputType;
 
   const CustomTextFormField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.isObscure = false,
     this.textInputAction = TextInputAction.done,
     this.autoValidate = true,
+    this.textInputType = TextInputType.text,
   });
 
   @override
@@ -95,6 +97,8 @@ class CustomTextFormField extends StatelessWidget {
       obscureText: isObscure,
       autovalidateMode:
           autoValidate ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
+      autocorrect: false,
+      keyboardType: textInputType,
     );
   }
 }
