@@ -27,5 +27,5 @@ class SplashScreen extends StatelessWidget {
 }
 
 void _redirectToNextScreen(final BuildContext context) =>
-    Future.delayed(const Duration(milliseconds: 2500))
+    Future.delayed(const Duration(milliseconds: 1500))
         .then((_) => Navigator.of(context).pushNamed(RouteGenerator.loginScreen));

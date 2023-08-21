@@ -1,3 +1,13 @@
 {
-    "example": "Primjer"
+    "signInTitle": "Prijava u svoj račun.",
+    "email": "E-pošta",
+    "password": "Lozinka",
+    "signIn": "Prijava",
+    "dontHaveAnAccount": "Nemate svoj račun?",
+    "signUp": "Registracija",
+    "emailEmptyValidation": "E-pošta ne može biti prazna.",
+    "emailAddressValidation": "Molimo Vas unesite ispravnu adresu E-pošte.",
+    "passwordEmptyValidation": "Lozinka ne može biti prazna.",
+    "passwordLengthValidation": "Duljina lozinke mora biti 8 ili duže.",
+    "passwordComplexityValidation": "Lozinka nije dovoljno kompleksna."
 }

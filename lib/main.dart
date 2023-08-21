@@ -13,9 +13,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      locale: const Locale('en'),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: RouteGenerator.splashScreen,
+      initialRoute: RouteGenerator.loginScreen,
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

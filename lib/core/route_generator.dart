@@ -3,8 +3,8 @@ import 'package:tourist_app/core/presentation/screen/splash_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/login_screen.dart';
 
 class RouteGenerator {
-  static const splashScreen = '/';
-  static const loginScreen = '/login';
+  static const splashScreen = '/splash';
+  static const loginScreen = '/';
 
   RouteGenerator._();
 

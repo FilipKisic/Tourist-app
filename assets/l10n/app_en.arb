@@ -1,3 +1,13 @@
 {
-    "example": "Example"
+    "signInTitle": "Please sign in to your account.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "dontHaveAnAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "emailEmptyValidation": "Email cannot be empty.",
+    "emailAddressValidation": "Please enter a valid email address.",
+    "passwordEmptyValidation": "Password cannot be empty.",
+    "passwordLengthValidation": "Password must be 8 characters or longer.",
+    "passwordComplexityValidation": "Password is not complex enough."
 }

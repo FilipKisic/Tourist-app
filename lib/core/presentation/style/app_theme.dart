@@ -18,12 +18,13 @@ class AppTheme {
       secondary: secondaryColorLight,
       background: backgroundColorLight,
       error: errorColorLight,
+      outline: borderColorLight,
     ),
     textTheme: const TextTheme(
       titleMedium: appBarTextStyle,
       labelLarge: buttonTextStyle,
       labelMedium: labelTextStyle,
-      bodyLarge: standardTextStyle,
+      bodyMedium: standardTextStyle,
       bodySmall: errorTextStyle,
     ),
   );
