@@ -23,18 +23,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final userState = ref.watch(userProvider.select((provider) => provider.userAuthState));
-
-    userState?.whenOrNull(
-      data: (_) => WidgetsBinding.instance.addPostFrameCallback(
-        (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
-      ),
-      error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
-        (_) => CustomSnackBar.show(
-          context,
-          AppLocalizations.of(context).wrongEmailOrPassword,
+    
+    ref.listen(userProvider.select((provider) => provider.userAuthState), (_, state) {
+      state?.whenOrNull(
+        data: (_) => WidgetsBinding.instance.addPostFrameCallback(
+          (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
         ),
-      ),
-    );
+        error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
+          (_) => CustomSnackBar.show(
+            context,
+            AppLocalizations.of(context).wrongEmailOrPassword,
+          ),
+        ),
+      );
+    });
 
     return Scaffold(
       resizeToAvoidBottomInset: true,

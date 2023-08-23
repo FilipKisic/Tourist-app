@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tourist_app/core/route_generator.dart';
@@ -27,5 +28,7 @@ class SplashScreen extends StatelessWidget {
 }
 
 void _redirectToNextScreen(final BuildContext context) =>
-    Future.delayed(const Duration(milliseconds: 1500))
-        .then((_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.loginScreen));
+    Future.delayed(const Duration(milliseconds: 1500)).then((_) =>
+        FirebaseAuth.instance.currentUser != null
+            ? Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen)
+            : Navigator.of(context).pushReplacementNamed(RouteGenerator.loginScreen));
