@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/features/auth/data/datasource/firebase/user_api.dart';
 import 'package:tourist_app/features/auth/data/repository/user_repository_impl.dart';
 import 'package:tourist_app/features/auth/domain/repository/user_repository.dart';
-import 'package:tourist_app/features/auth/domain/usecase/auth/login_user_use_case.dart';
+import 'package:tourist_app/features/auth/domain/usecase/auth_use_cases.dart';
 import 'package:tourist_app/features/auth/presentation/riverpod/user_provider.dart';
 
 // ***************** EXTERNAL LIBRARIES ***************** //
@@ -20,11 +20,11 @@ final userRepositoryProvider = Provider<UserRepository>(
 );
 
 // ***************** USE CASE ***************** //
-final loginUserUseCaseProvider = Provider<LoginUserUseCase>(
-  (ref) => LoginUserUseCase(ref.read(userRepositoryProvider)),
+final loginUserUseCaseProvider = Provider<AuthUseCases>(
+  (ref) => AuthUseCases(ref.read(userRepositoryProvider)),
 );
 
 // ***************** RIVERPOD ***************** //
-final userProvider = ChangeNotifierProvider(
+final userProvider = ChangeNotifierProvider.autoDispose(
   (ref) => UserProvider(ref.read(loginUserUseCaseProvider)),
 );

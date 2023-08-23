@@ -2,8 +2,9 @@
     "signInTitle": "Prijava u svoj račun.",
     "email": "E-pošta",
     "password": "Lozinka",
-    "signIn": "Prijava",
+    "signIn": "Prijavi se",
     "dontHaveAnAccount": "Nemate svoj račun?",
+    "alreadyHaveAnAccount": "Već imate račun?",
     "signUp": "Registracija",
     "emailEmptyValidation": "E-pošta ne može biti prazna.",
     "emailAddressValidation": "Molimo Vas unesite ispravnu adresu E-pošte.",
@@ -13,5 +14,6 @@
     "wrongEmailOrPassword": "Pogrešna adresa ili lozinka",
     "passwordsDoNotMatch": "Lozinke nisu jednake",
     "emailAlreadyExists": "E-pošta je već u uporabi",
-    "passwordIsTooWeak": "Lozinka je preslaba"
+    "passwordIsTooWeak": "Lozinka je preslaba",
+    "thereWasAnError": "Dogodila se pogreška"
 }

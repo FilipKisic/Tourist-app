@@ -23,7 +23,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final userState = ref.watch(userProvider.select((provider) => provider.userAuthState));
-    
+
     ref.listen(userProvider.select((provider) => provider.userAuthState), (_, state) {
       state?.whenOrNull(
         data: (_) => WidgetsBinding.instance.addPostFrameCallback(
@@ -89,7 +89,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         Text(AppLocalizations.of(context).dontHaveAnAccount),
                         const SizedBox(width: 5),
                         GestureDetector(
-                          onTap: () => _redirectToRegisterScreen(context),
+                          onTap: _redirectToRegisterScreen,
                           child: Text(
                             AppLocalizations.of(context).signUp,
                             style: Theme.of(context)
@@ -120,12 +120,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _login() async {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
-      await ref
-          .read(userProvider)
-          .loginUser(_emailController.text.trim(), _passwordController.text.trim());
+      await ref.read(userProvider).loginUser(
+            _emailController.text.trim(),
+            _passwordController.text.trim(),
+          );
     }
   }
 
-  void _redirectToRegisterScreen(final BuildContext context) =>
-      Navigator.of(context).pushNamed(RouteGenerator.registerScreen);
+  void _redirectToRegisterScreen() =>
+      Navigator.of(context).pushReplacementNamed(RouteGenerator.registerScreen);
 }

@@ -4,6 +4,7 @@
     "password": "Password",
     "signIn": "Sign in",
     "dontHaveAnAccount": "Don't have an account?",
+    "alreadyHaveAnAccount": "Already have an account?",
     "signUp": "Sign up",
     "emailEmptyValidation": "Email cannot be empty.",
     "emailAddressValidation": "Please enter a valid email address.",
@@ -13,5 +14,6 @@
     "wrongEmailOrPassword": "Wrong email or password",
     "passwordsDoNotMatch": "Passwords do not match",
     "emailAlreadyExists": "Email is already in use",
-    "passwordIsTooWeak": "Password is too weak"
+    "passwordIsTooWeak": "Password is too weak",
+    "thereWasAnError": "There was an error"
 }

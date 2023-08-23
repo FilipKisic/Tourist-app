@@ -8,5 +8,10 @@ class UserRepositoryImpl implements UserRepository {
   const UserRepositoryImpl(this._api);
 
   @override
-  Future<User?> loginUser(String email, String password) => _api.loginUser(email, password);
+  Future<User?> loginUser(final String email, final String password) =>
+      _api.loginUser(email, password);
+
+  @override
+  Future<User?> registerUser(final String email, final String password) =>
+      _api.registerUser(email, password);
 }
