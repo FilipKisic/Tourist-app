@@ -1,25 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/route_generator.dart';
+import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final userState = ref.watch(userProvider.select((provider) => provider.userAuthState));
+
+    userState?.whenOrNull(
+      data: (_) => WidgetsBinding.instance.addPostFrameCallback(
+        (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
+      ),
+      error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
+        (_) => CustomSnackBar.show(
+          context,
+          AppLocalizations.of(context).wrongEmailOrPassword,
+        ),
+      ),
+    );
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: GestureDetector(
@@ -61,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 40),
                     PrimrayButton(
                       onPressed: () => _login(),
+                      isLoading: userState is AsyncLoading<void>,
                       text: AppLocalizations.of(context).signIn,
                     ),
                     const SizedBox(height: 80),
@@ -91,12 +108,19 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _login() {
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _login() async {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
-      //redirect to the main screen
-    } else {
-      CustomSnackBar.show(context, AppLocalizations.of(context).wrongEmailOrPassword);
+      await ref
+          .read(userProvider)
+          .loginUser(_emailController.text.trim(), _passwordController.text.trim());
     }
   }
 

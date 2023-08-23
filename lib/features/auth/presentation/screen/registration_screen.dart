@@ -80,6 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     const SizedBox(height: 40),
                     PrimrayButton(
                       onPressed: () => _register(),
+                      isLoading: false,
                       text: AppLocalizations.of(context).signUp,
                     ),
                   ],
@@ -90,6 +91,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 
   void _register() {
