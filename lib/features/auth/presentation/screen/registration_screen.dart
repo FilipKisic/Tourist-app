@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -92,12 +93,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _register() {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
       if (doPasswordsMatch(_passwordController.text, _confirmPasswordController.text)) {
-        print(
-            '${_emailController.text} ${_passwordController.text} ${_confirmPasswordController.text}');
+        //redirect to the main screen
       } else {
-        //show snackbar
+        CustomSnackBar.show(context, AppLocalizations.of(context).passwordsDoNotMatch);
       }
     }
   }

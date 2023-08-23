@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -91,8 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _login() {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
-      print('${_emailController.text} ${_passwordController.text}');
+      //redirect to the main screen
+    } else {
+      CustomSnackBar.show(context, AppLocalizations.of(context).wrongEmailOrPassword);
     }
   }
 

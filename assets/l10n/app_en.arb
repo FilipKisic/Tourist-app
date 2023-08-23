@@ -9,5 +9,9 @@
     "emailAddressValidation": "Please enter a valid email address.",
     "passwordEmptyValidation": "Password cannot be empty.",
     "passwordLengthValidation": "Password must be 8 characters or longer.",
-    "passwordComplexityValidation": "Password is not complex enough."
+    "passwordComplexityValidation": "Password is not complex enough.",
+    "wrongEmailOrPassword": "Wrong email or password",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "emailAlreadyExists": "Email is already in use",
+    "passwordIsTooWeak": "Password is too weak"
 }

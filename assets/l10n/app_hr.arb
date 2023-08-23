@@ -9,5 +9,9 @@
     "emailAddressValidation": "Molimo Vas unesite ispravnu adresu E-pošte.",
     "passwordEmptyValidation": "Lozinka ne može biti prazna.",
     "passwordLengthValidation": "Duljina lozinke mora biti 8 ili duže.",
-    "passwordComplexityValidation": "Lozinka nije dovoljno kompleksna."
+    "passwordComplexityValidation": "Lozinka nije dovoljno kompleksna.",
+    "wrongEmailOrPassword": "Pogrešna adresa ili lozinka",
+    "passwordsDoNotMatch": "Lozinke nisu jednake",
+    "emailAlreadyExists": "E-pošta je već u uporabi",
+    "passwordIsTooWeak": "Lozinka je preslaba"
 }

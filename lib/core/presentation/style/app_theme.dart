@@ -29,6 +29,7 @@ class AppTheme {
       titleMedium: appBarTextStyle,
       labelLarge: buttonTextStyle,
       labelMedium: labelTextStyle,
+      labelSmall: snackbarTextStyle,
       bodyMedium: standardTextStyle,
       bodySmall: errorTextStyle,
     ),
