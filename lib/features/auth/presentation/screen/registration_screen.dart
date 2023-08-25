@@ -5,21 +5,23 @@ import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
-class RegistrationScreen extends ConsumerStatefulWidget {
-  const RegistrationScreen({super.key});
+class RegisterScreen extends ConsumerStatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RegistrationScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterScreenState();
 }
 
-class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
+class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  bool _isPasswordObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                       ),
                     ),
                     Text(
-                      AppLocalizations.of(context).signInTitle,
+                      AppLocalizations.of(context).signUpTitle,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 20),
@@ -83,15 +85,23 @@ class _RegistrationScreenState extends ConsumerState<RegistrationScreen> {
                       controller: _passwordController,
                       label: AppLocalizations.of(context).password,
                       textInputAction: TextInputAction.next,
-                      isObscure: true,
+                      isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
+                      suffixIcon: PasswordVisibilityToggle(
+                        onTap: () => setState(() => _isPasswordObscure = !_isPasswordObscure),
+                        isPasswordObscure: _isPasswordObscure,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _confirmPasswordController,
                       label: AppLocalizations.of(context).password,
-                      isObscure: true,
+                      isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
+                      suffixIcon: PasswordVisibilityToggle(
+                        onTap: () => setState(() => _isPasswordObscure = !_isPasswordObscure),
+                        isPasswordObscure: _isPasswordObscure,
+                      ),
                     ),
                     const SizedBox(height: 40),
                     PrimrayButton(

@@ -14,4 +14,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<User?> registerUser(final String email, final String password) =>
       _api.registerUser(email, password);
+
+  @override
+  Future<void> resetPassword(final String email) => _api.resetPassword(email);
 }

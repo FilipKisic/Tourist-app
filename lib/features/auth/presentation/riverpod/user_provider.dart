@@ -9,6 +9,7 @@ class UserProvider extends ChangeNotifier {
   UserProvider(this._authUseCases);
 
   AsyncValue<User?>? userAuthState;
+  AsyncValue<bool>? resetPasswordState;
 
   Future<void> loginUser(final String email, final String password) async {
     userAuthState = const AsyncValue.loading();
@@ -38,6 +39,20 @@ class UserProvider extends ChangeNotifier {
       }
     } catch (e) {
       userAuthState = AsyncValue.error('There was an error', StackTrace.current);
+      notifyListeners();
+    }
+  }
+
+  Future<void> resetPassword(final String email) async {
+    resetPasswordState = const AsyncValue.loading();
+    notifyListeners();
+    
+    try {
+      await _authUseCases.resetPassword(email);
+      resetPasswordState = const AsyncValue.data(true);
+      notifyListeners();
+    } catch (e) {
+      resetPasswordState = AsyncValue.error(e.toString(), StackTrace.current);
       notifyListeners();
     }
   }

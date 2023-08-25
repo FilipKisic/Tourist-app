@@ -17,7 +17,7 @@ class CustomSnackBar {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Theme.of(context).colorScheme.secondary, width: 2),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
         ),
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.fromLTRB(10, 0, 10, 30),

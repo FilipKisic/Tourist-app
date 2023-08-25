@@ -18,7 +18,7 @@ class PrimrayButton extends StatelessWidget {
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.orange,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         padding: EdgeInsets.zero,
       ),
       child: Ink(
@@ -29,7 +29,7 @@ class PrimrayButton extends StatelessWidget {
               Theme.of(context).colorScheme.secondary,
             ],
           ),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: Container(
           constraints: const BoxConstraints(minHeight: 50.0),

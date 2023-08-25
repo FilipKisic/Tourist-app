@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_app/core/presentation/screen/splash_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/login_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/registration_screen.dart';
+import 'package:tourist_app/features/auth/presentation/screen/reset_password_screen.dart';
 import 'package:tourist_app/features/common/presentation/screen/home_screen.dart';
 import 'package:tourist_app/features/locations/presentation/screen/places_screen.dart';
 
@@ -9,6 +10,7 @@ class RouteGenerator {
   static const splashScreen = '/';
   static const loginScreen = '/login';
   static const registerScreen = '/registration';
+  static const resetScreen = '/reset';
   static const homeScreen = '/home';
   static const placesScreen = '/places';
 
@@ -21,7 +23,9 @@ class RouteGenerator {
       case loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case registerScreen:
-        return MaterialPageRoute(builder: (_) => const RegistrationScreen());
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case resetScreen:
+        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case placesScreen:

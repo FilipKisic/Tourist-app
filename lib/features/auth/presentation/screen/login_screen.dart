@@ -5,6 +5,7 @@ import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
+import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
@@ -19,6 +20,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isPasswordObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +75,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     CustomTextFormField(
                       controller: _passwordController,
                       label: AppLocalizations.of(context).password,
-                      isObscure: true,
+                      isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
+                      suffixIcon: PasswordVisibilityToggle(
+                        onTap: () => setState(() => _isPasswordObscure = !_isPasswordObscure),
+                        isPasswordObscure: _isPasswordObscure,
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () => Navigator.of(context).pushNamed(RouteGenerator.resetScreen),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                          child: Text(AppLocalizations.of(context).forgotPassword),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 40),
                     PrimrayButton(
@@ -91,7 +107,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         GestureDetector(
                           onTap: _redirectToRegisterScreen,
                           child: Text(
-                            AppLocalizations.of(context).signUp,
+                            AppLocalizations.of(context).createAccount,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

@@ -20,4 +20,6 @@ class UserApi {
     );
     return userCredential.user;
   }
+
+  Future<void> resetPassword(final String email) => instance.sendPasswordResetEmail(email: email);
 }

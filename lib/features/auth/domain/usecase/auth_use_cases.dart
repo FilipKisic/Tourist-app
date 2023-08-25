@@ -11,4 +11,6 @@ class AuthUseCases {
 
   Future<User?> registerUser(final String email, final String password) =>
       _userRepository.registerUser(email, password);
+
+  Future<void> resetPassword(final String email) => _userRepository.resetPassword(email);
 }

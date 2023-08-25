@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final bool autoValidate;
   final TextInputType textInputType;
+  final Widget? suffixIcon;
 
   const CustomTextFormField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.textInputAction = TextInputAction.done,
     this.autoValidate = true,
     this.textInputType = TextInputType.text,
+    this.suffixIcon,
   });
 
   @override
@@ -34,6 +36,7 @@ class CustomTextFormField extends StatelessWidget {
           label,
           style: Theme.of(context).textTheme.labelMedium,
         ),
+        suffixIcon: suffixIcon,
         border: DecoratedInputBorder(
           shadow: BoxShadow(
             color: Theme.of(context).shadowColor,
@@ -45,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
               width: 1,
               color: Theme.of(context).colorScheme.outline,
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         enabledBorder: DecoratedInputBorder(
@@ -59,7 +62,7 @@ class CustomTextFormField extends StatelessWidget {
               width: 1,
               color: Theme.of(context).colorScheme.outline,
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         focusedBorder: DecoratedInputBorder(
@@ -73,7 +76,7 @@ class CustomTextFormField extends StatelessWidget {
               width: 1,
               color: Theme.of(context).colorScheme.outline,
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         errorBorder: DecoratedInputBorder(
@@ -84,7 +87,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           child: OutlineInputBorder(
             borderSide: BorderSide(width: 1, color: Theme.of(context).colorScheme.error),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
           ),
         ),
         errorStyle: Theme.of(context)
@@ -99,6 +102,7 @@ class CustomTextFormField extends StatelessWidget {
           autoValidate ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
       autocorrect: false,
       keyboardType: textInputType,
+      
     );
   }
 }
