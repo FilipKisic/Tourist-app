@@ -34,7 +34,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
           (_) => CustomSnackBar.show(
             context,
-            AppLocalizations.of(context).wrongEmailOrPassword,
+            AppLocalizations.of(context)!.wrongEmailOrPassword,
           ),
         ),
       );
@@ -60,13 +60,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                     Text(
-                      AppLocalizations.of(context).signInTitle,
+                      AppLocalizations.of(context)!.signInTitle,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _emailController,
-                      label: AppLocalizations.of(context).email,
+                      label: AppLocalizations.of(context)!.email,
                       textInputAction: TextInputAction.next,
                       validator: (value) => validateEmail(context, value),
                       textInputType: TextInputType.emailAddress,
@@ -74,7 +74,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _passwordController,
-                      label: AppLocalizations.of(context).password,
+                      label: AppLocalizations.of(context)!.password,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
                       suffixIcon: PasswordVisibilityToggle(
@@ -88,7 +88,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         onTap: () => Navigator.of(context).pushNamed(RouteGenerator.resetScreen),
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          child: Text(AppLocalizations.of(context).forgotPassword),
+                          child: Text(AppLocalizations.of(context)!.forgotPassword),
                         ),
                       ),
                     ),
@@ -96,18 +96,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     PrimrayButton(
                       onPressed: () => _login(),
                       isLoading: userState is AsyncLoading<void>,
-                      text: AppLocalizations.of(context).signIn,
+                      text: AppLocalizations.of(context)!.signIn,
                     ),
                     const SizedBox(height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppLocalizations.of(context).dontHaveAnAccount),
+                        Text(AppLocalizations.of(context)!.dontHaveAnAccount),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToRegisterScreen,
                           child: Text(
-                            AppLocalizations.of(context).createAccount,
+                            AppLocalizations.of(context)!.createAccount,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

@@ -23,7 +23,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
     ref.listen(userProvider.select((provider) => provider.resetPasswordState), (_, state) {
       state?.whenOrNull(
         data: (_) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => CustomSnackBar.show(context, AppLocalizations.of(context).verificationEmail),
+          (_) => CustomSnackBar.show(context, AppLocalizations.of(context)!.verificationEmail),
         ),
         error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
           (_) => CustomSnackBar.show(context, error.toString()),
@@ -38,7 +38,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           icon: const Icon(Icons.chevron_left_rounded),
         ),
         title: Text(
-          AppLocalizations.of(context).resetPassword,
+          AppLocalizations.of(context)!.resetPassword,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -55,7 +55,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                 child: Text(
-                  AppLocalizations.of(context).resetPasswordTitle,
+                  AppLocalizations.of(context)!.resetPasswordTitle,
                   style: Theme.of(context).textTheme.bodyMedium,
                   textAlign: TextAlign.center,
                 ),
@@ -63,12 +63,12 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               const SizedBox(height: 30),
               CustomTextFormField(
                 controller: _emailController,
-                label: AppLocalizations.of(context).email,
+                label: AppLocalizations.of(context)!.email,
               ),
               const SizedBox(height: 30),
               PrimrayButton(
                 onPressed: () => ref.read(userProvider).resetPassword(_emailController.text.trim()),
-                text: AppLocalizations.of(context).reset,
+                text: AppLocalizations.of(context)!.reset,
                 isLoading: resetState is AsyncLoading<void>,
               ),
             ],

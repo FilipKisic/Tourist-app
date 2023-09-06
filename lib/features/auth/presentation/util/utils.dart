@@ -3,10 +3,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 String? validateEmail(final BuildContext context, final String? value) {
   if (value == null || value.isEmpty) {
-    return AppLocalizations.of(context).emailEmptyValidation;
+    return AppLocalizations.of(context)!.emailEmptyValidation;
   }
   if (_isNotValidEmailAddress(value)) {
-    return AppLocalizations.of(context).emailAddressValidation;
+    return AppLocalizations.of(context)!.emailAddressValidation;
   }
   return null;
 }
@@ -17,9 +17,9 @@ bool _isNotValidEmailAddress(final String value) => !RegExp(
 
 String? validatePassword(final BuildContext context, final String? value) {
   if (value == null || value.isEmpty) {
-    return AppLocalizations.of(context).passwordEmptyValidation;
+    return AppLocalizations.of(context)!.passwordEmptyValidation;
   } else if (value.length < 8) {
-    return AppLocalizations.of(context).passwordLengthValidation;
+    return AppLocalizations.of(context)!.passwordLengthValidation;
   } else {
     return null;
   }

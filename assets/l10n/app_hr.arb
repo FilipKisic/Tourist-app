@@ -22,5 +22,8 @@
     "passwordsDoNotMatch": "Lozinke nisu jednake",
     "emailAlreadyExists": "E-pošta je već u uporabi",
     "passwordIsTooWeak": "Lozinka je preslaba",
-    "thereWasAnError": "Dogodila se pogreška"
+    "thereWasAnError": "Dogodila se pogreška",
+    "sights": "Znamenitosti",
+    "favorites": "Favoriti",
+    "profile": "Profil"
 }

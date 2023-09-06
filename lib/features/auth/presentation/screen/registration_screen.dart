@@ -46,7 +46,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
           icon: const Icon(Icons.chevron_left_rounded), //! should pop() instead of push()
         ),
         title: Text(
-          AppLocalizations.of(context).signUp,
+          AppLocalizations.of(context)!.signUp,
           style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
@@ -69,13 +69,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       ),
                     ),
                     Text(
-                      AppLocalizations.of(context).signUpTitle,
+                      AppLocalizations.of(context)!.signUpTitle,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _emailController,
-                      label: AppLocalizations.of(context).email,
+                      label: AppLocalizations.of(context)!.email,
                       textInputAction: TextInputAction.next,
                       validator: (value) => validateEmail(context, value),
                       textInputType: TextInputType.emailAddress,
@@ -83,7 +83,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _passwordController,
-                      label: AppLocalizations.of(context).password,
+                      label: AppLocalizations.of(context)!.password,
                       textInputAction: TextInputAction.next,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
@@ -95,7 +95,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _confirmPasswordController,
-                      label: AppLocalizations.of(context).password,
+                      label: AppLocalizations.of(context)!.password,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
                       suffixIcon: PasswordVisibilityToggle(
@@ -107,18 +107,18 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     PrimrayButton(
                       onPressed: () => _register(),
                       isLoading: userState is AsyncLoading<void>,
-                      text: AppLocalizations.of(context).signUp,
+                      text: AppLocalizations.of(context)!.signUp,
                     ),
                     const SizedBox(height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppLocalizations.of(context).alreadyHaveAnAccount),
+                        Text(AppLocalizations.of(context)!.alreadyHaveAnAccount),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToLoginScreen,
                           child: Text(
-                            AppLocalizations.of(context).signIn,
+                            AppLocalizations.of(context)!.signIn,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -147,11 +147,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   void _showErrorOnSnackBar(final String error) {
     if (error == 'weak-password') {
-      CustomSnackBar.show(context, AppLocalizations.of(context).passwordComplexityValidation);
+      CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordComplexityValidation);
     } else if (error.toString() == 'email-already-in-use') {
-      CustomSnackBar.show(context, AppLocalizations.of(context).emailAlreadyExists);
+      CustomSnackBar.show(context, AppLocalizations.of(context)!.emailAlreadyExists);
     } else {
-      CustomSnackBar.show(context, AppLocalizations.of(context).thereWasAnError);
+      CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError);
     }
   }
 
@@ -164,7 +164,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               _passwordController.text.trim(),
             );
       } else {
-        CustomSnackBar.show(context, AppLocalizations.of(context).passwordsDoNotMatch);
+        CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordsDoNotMatch);
       }
     }
   }

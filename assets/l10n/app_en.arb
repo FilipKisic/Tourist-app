@@ -22,5 +22,8 @@
     "passwordsDoNotMatch": "Passwords do not match",
     "emailAlreadyExists": "Email is already in use",
     "passwordIsTooWeak": "Password is too weak",
-    "thereWasAnError": "There was an error"
+    "thereWasAnError": "There was an error",
+    "sights": "Sights",
+    "favorites": "Favorites",
+    "profile": "Profile"
 }
