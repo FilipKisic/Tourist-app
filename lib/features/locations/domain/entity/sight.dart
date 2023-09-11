@@ -4,8 +4,8 @@ part 'sight.g.dart';
 
 @JsonSerializable()
 class Sight {
-  final int id;
-  final String name;
+  final String id;
+  final String title;
   final String? description;
   final String? address;
   final double lat;
@@ -14,7 +14,7 @@ class Sight {
 
   const Sight({
     required this.id,
-    required this.name,
+    required this.title,
     this.description,
     this.address,
     required this.lat,

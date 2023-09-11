@@ -7,8 +7,8 @@ part of 'sight.dart';
 // **************************************************************************
 
 Sight _$SightFromJson(Map<String, dynamic> json) => Sight(
-      id: json['id'] as int,
-      name: json['name'] as String,
+      id: json['id'] as String,
+      title: json['title'] as String,
       description: json['description'] as String?,
       address: json['address'] as String?,
       lat: (json['lat'] as num).toDouble(),
@@ -18,7 +18,7 @@ Sight _$SightFromJson(Map<String, dynamic> json) => Sight(
 
 Map<String, dynamic> _$SightToJson(Sight instance) => <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
+      'title': instance.title,
       'description': instance.description,
       'address': instance.address,
       'lat': instance.lat,

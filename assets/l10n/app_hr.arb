@@ -25,5 +25,6 @@
     "thereWasAnError": "Dogodila se pogreška",
     "sights": "Znamenitosti",
     "favorites": "Favoriti",
-    "profile": "Profil"
+    "profile": "Profil",
+    "noAddress": "Nema adrese"
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/di.dart';
+import 'package:tourist_app/features/locations/presentation/widget/sight_card.dart';
 
 class SightsScreen extends ConsumerWidget {
   const SightsScreen({super.key});
@@ -12,7 +13,7 @@ class SightsScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -20,6 +21,7 @@ class SightsScreen extends ConsumerWidget {
                 AppLocalizations.of(context)!.sights,
                 style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
               ),
+              const SizedBox(height: 10),
               Expanded(
                 child: sightListState!.when(
                   loading: () => const Center(
@@ -39,10 +41,14 @@ class SightsScreen extends ConsumerWidget {
                   ),
                   data: (list) => ListView.separated(
                     itemCount: list.length,
+                    physics: const ClampingScrollPhysics(),
                     separatorBuilder: (context, _) => const SizedBox(height: 10),
-                    itemBuilder: (context, index) => Container(
-                      color: Colors.amber,
-                      child: Text('Title: ${list[index].name}'),
+                    itemBuilder: (context, index) => SightCard(
+                      title: list[index].title,
+                      address: list[index].address,
+                      lat: list[index].lat,
+                      lng: list[index].lng,
+                      rating: list[index].rating,
                     ),
                   ),
                 ),

@@ -8,6 +8,6 @@ part 'sight_api.g.dart';
 abstract class SightAPI {
   factory SightAPI(Dio dio, {String baseUrl}) = _SightAPI;
 
-  @GET('/')
+  @GET('/all')
   Future<List<Sight>> getAllSights();
 }

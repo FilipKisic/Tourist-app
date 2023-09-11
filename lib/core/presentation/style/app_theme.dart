@@ -9,7 +9,7 @@ class AppTheme {
     fontFamily: 'Montserrat',
     useMaterial3: true,
     scaffoldBackgroundColor: backgroundColorLight,
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: whiteColor),
     shadowColor: shadowColorLight,
     appBarTheme: const AppBarTheme(
       surfaceTintColor: backgroundColorLight,
@@ -21,6 +21,7 @@ class AppTheme {
       primary: primaryColorLight,
       onPrimary: textColorLight,
       secondary: secondaryColorLight,
+      tertiary: ratingActiveColorLight,
       background: backgroundColorLight,
       error: errorColorLight,
       outline: borderColorLight,
@@ -32,6 +33,9 @@ class AppTheme {
       labelSmall: snackbarTextStyle,
       bodyMedium: standardTextStyle,
       bodySmall: errorTextStyle,
+      displayLarge: cardTitleTextStyle,
+      displayMedium: cardSubtitleTextStyle,
+      displaySmall: cardSmallTextStyle,
     ),
   );
 }

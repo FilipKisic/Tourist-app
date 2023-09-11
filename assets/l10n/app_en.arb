@@ -25,5 +25,6 @@
     "thereWasAnError": "There was an error",
     "sights": "Sights",
     "favorites": "Favorites",
-    "profile": "Profile"
+    "profile": "Profile",
+    "noAddress": "No address"
 }

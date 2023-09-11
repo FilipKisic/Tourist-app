@@ -34,7 +34,7 @@ class _SightAPI implements SightAPI {
     )
             .compose(
               _dio.options,
-              '/',
+              '/all',
               queryParameters: queryParameters,
               data: _data,
             )
