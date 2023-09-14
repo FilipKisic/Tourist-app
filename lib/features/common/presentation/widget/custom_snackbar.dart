@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 
 class CustomSnackBar {
   const CustomSnackBar._();
@@ -11,7 +12,7 @@ class CustomSnackBar {
           children: [
             Icon(Icons.info_rounded, color: Theme.of(context).colorScheme.secondary,),
             const SizedBox(width: 5),
-            Text(text, style: Theme.of(context).textTheme.labelSmall),
+            Text(text, style: Theme.of(context).textTheme.snackbar),
           ],
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

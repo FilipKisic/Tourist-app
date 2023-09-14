@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
@@ -61,7 +62,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     Text(
                       AppLocalizations.of(context)!.signInTitle,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.standard,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
@@ -88,7 +89,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         onTap: () => Navigator.of(context).pushNamed(RouteGenerator.resetScreen),
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          child: Text(AppLocalizations.of(context)!.forgotPassword),
+                          child: Text(
+                            AppLocalizations.of(context)!.forgotPassword,
+                            style: Theme.of(context).textTheme.standard,
+                          ),
                         ),
                       ),
                     ),
@@ -102,7 +106,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppLocalizations.of(context)!.dontHaveAnAccount),
+                        Text(
+                          AppLocalizations.of(context)!.dontHaveAnAccount,
+                          style: Theme.of(context).textTheme.standard,
+                        ),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToRegisterScreen,
@@ -110,7 +117,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             AppLocalizations.of(context)!.createAccount,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium!
+                                .standard
                                 .copyWith(color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),

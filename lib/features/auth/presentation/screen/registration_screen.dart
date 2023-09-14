@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
@@ -47,7 +48,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         ),
         title: Text(
           AppLocalizations.of(context)!.signUp,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.appBarTitle,
         ),
       ),
       body: GestureDetector(
@@ -70,7 +71,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     ),
                     Text(
                       AppLocalizations.of(context)!.signUpTitle,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Theme.of(context).textTheme.standard,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
@@ -113,7 +114,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppLocalizations.of(context)!.alreadyHaveAnAccount),
+                        Text(
+                          AppLocalizations.of(context)!.alreadyHaveAnAccount,
+                          style: Theme.of(context).textTheme.standard,
+                        ),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToLoginScreen,
@@ -121,7 +125,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                             AppLocalizations.of(context)!.signIn,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyMedium!
+                                .standard
                                 .copyWith(color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),

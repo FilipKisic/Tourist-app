@@ -26,5 +26,7 @@
     "sights": "Znamenitosti",
     "favorites": "Favoriti",
     "profile": "Profil",
-    "noAddress": "Nema adrese"
+    "noAddress": "Nema adrese",
+    "rating": "Ocjena:",
+    "showOnMaps": "Prikaži na karti"
 }

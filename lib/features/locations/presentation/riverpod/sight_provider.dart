@@ -11,6 +11,7 @@ class SightProvider extends ChangeNotifier {
   }
 
   AsyncValue<List<Sight>>? sightListState;
+  Sight? _selectedSight;
 
   void getAll() async {
     sightListState = const AsyncValue.loading();
@@ -19,4 +20,11 @@ class SightProvider extends ChangeNotifier {
     sightListState = await AsyncValue.guard(() => sightUseCases.getAllSights());
     notifyListeners();
   }
+
+  void selectSight(final Sight sight) {
+    _selectedSight = sight;
+    notifyListeners();
+  }
+
+  Sight? get selectedSight => _selectedSight;
 }

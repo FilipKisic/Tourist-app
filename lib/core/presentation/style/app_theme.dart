@@ -22,20 +22,24 @@ class AppTheme {
       onPrimary: textColorLight,
       secondary: secondaryColorLight,
       tertiary: ratingActiveColorLight,
+      tertiaryContainer: ratingInactiveColorLight,
       background: backgroundColorLight,
       error: errorColorLight,
       outline: borderColorLight,
     ),
-    textTheme: const TextTheme(
-      titleMedium: appBarTextStyle,
-      labelLarge: buttonTextStyle,
-      labelMedium: labelTextStyle,
-      labelSmall: snackbarTextStyle,
-      bodyMedium: standardTextStyle,
-      bodySmall: errorTextStyle,
-      displayLarge: cardTitleTextStyle,
-      displayMedium: cardSubtitleTextStyle,
-      displaySmall: cardSmallTextStyle,
-    ),
   );
+}
+
+extension CustomTextTheme on TextTheme {
+  TextStyle get title => titleTextStyle;
+  TextStyle get appBarTitle => appBarTextStyle;
+  TextStyle get buttonText => buttonTextStyle;
+  TextStyle get label => labelTextStyle;
+  TextStyle get snackbar => snackbarTextStyle;
+  TextStyle get standard => standardTextStyle;
+  TextStyle get error => errorTextStyle;
+  TextStyle get description => descriptionTextStyle;
+  TextStyle get cardTitle => cardTitleTextStyle;
+  TextStyle get cardSubtitle => cardSubtitleTextStyle;
+  TextStyle get cardSmall => cardSmallTextStyle;
 }

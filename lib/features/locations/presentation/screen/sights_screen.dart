@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/locations/presentation/widget/sight_card.dart';
 
@@ -19,13 +21,13 @@ class SightsScreen extends ConsumerWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.sights,
-                style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.title,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               Expanded(
                 child: sightListState!.when(
-                  loading: () => const Center(
-                    child: CircularProgressIndicator.adaptive(),
+                  loading: () => Center(
+                    child: Lottie.asset('assets/animations/loading_sights.json', height: 65),
                   ),
                   error: (error, _) => Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -35,21 +37,15 @@ class SightsScreen extends ConsumerWidget {
                       ),
                       Text(
                         AppLocalizations.of(context)!.thereWasAnError,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.standard,
                       ),
                     ],
                   ),
                   data: (list) => ListView.separated(
                     itemCount: list.length,
                     physics: const ClampingScrollPhysics(),
-                    separatorBuilder: (context, _) => const SizedBox(height: 10),
-                    itemBuilder: (context, index) => SightCard(
-                      title: list[index].title,
-                      address: list[index].address,
-                      lat: list[index].lat,
-                      lng: list[index].lng,
-                      rating: list[index].rating,
-                    ),
+                    separatorBuilder: (context, _) => const SizedBox(height: 20),
+                    itemBuilder: (context, index) => SightCard(sight: list[index]),
                   ),
                 ),
               ),

@@ -26,5 +26,7 @@
     "sights": "Sights",
     "favorites": "Favorites",
     "profile": "Profile",
-    "noAddress": "No address"
+    "noAddress": "No address",
+    "rating": "Rating:",
+    "showOnMaps": "Show on maps"
 }

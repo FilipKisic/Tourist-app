@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -26,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: Theme.of(context).textTheme.labelMedium,
+      style: Theme.of(context).textTheme.label,
       decoration: InputDecoration(
         floatingLabelBehavior: FloatingLabelBehavior.never,
         filled: true,
@@ -34,7 +35,7 @@ class CustomTextFormField extends StatelessWidget {
         isDense: true,
         label: Text(
           label,
-          style: Theme.of(context).textTheme.labelMedium,
+          style: Theme.of(context).textTheme.label,
         ),
         suffixIcon: suffixIcon,
         border: DecoratedInputBorder(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
@@ -39,7 +40,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         ),
         title: Text(
           AppLocalizations.of(context)!.resetPassword,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.appBarTitle,
         ),
       ),
       body: SafeArea(
@@ -56,7 +57,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                 child: Text(
                   AppLocalizations.of(context)!.resetPasswordTitle,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.standard,
                   textAlign: TextAlign.center,
                 ),
               ),

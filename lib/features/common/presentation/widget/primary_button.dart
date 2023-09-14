@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 
 class PrimrayButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -38,7 +39,7 @@ class PrimrayButton extends StatelessWidget {
               ? const CircularProgressIndicator(color: Colors.white)
               : Text(
                   text,
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: Theme.of(context).textTheme.buttonText,
                 ),
         ),
       ),

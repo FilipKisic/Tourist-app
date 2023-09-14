@@ -5,6 +5,7 @@ import 'package:tourist_app/features/auth/presentation/screen/registration_scree
 import 'package:tourist_app/features/auth/presentation/screen/reset_password_screen.dart';
 import 'package:tourist_app/features/common/presentation/screen/home_screen.dart';
 import 'package:tourist_app/features/locations/presentation/screen/favorites_screen.dart';
+import 'package:tourist_app/features/locations/presentation/screen/sight_details_screen.dart';
 import 'package:tourist_app/features/locations/presentation/screen/sights_screen.dart';
 import 'package:tourist_app/features/settings/presentation/screen/settings_screen.dart';
 
@@ -17,6 +18,7 @@ class RouteGenerator {
   static const sightsScreen = '/sights';
   static const settingsScreen = '/settings';
   static const favoritesScreen = '/favorites';
+  static const sightDetailsScreen = '/details';
 
   RouteGenerator._();
 
@@ -38,6 +40,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case favoritesScreen:
         return MaterialPageRoute(builder: (_) => const FavoritesScreen());
+      case sightDetailsScreen:
+        return MaterialPageRoute(builder: (_) => const SightDetailsScreen());
       default:
         throw const RouteException('Route not defined...');
     }
