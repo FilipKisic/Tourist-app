@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/di.dart';
+import 'package:tourist_app/features/common/presentation/widget/icon_button.dart';
 import 'package:tourist_app/features/locations/presentation/widget/sight_details_sheet.dart';
 
 class SightDetailsScreen extends ConsumerWidget {
@@ -42,6 +43,11 @@ class SightDetailsScreen extends ConsumerWidget {
             Positioned(
               bottom: 0,
               child: SightDetailsSheet(sight: selectedSight!),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.33,
+              right: 40,
+              child: CircularIconButton(onPressed: () {}, icon: Icons.favorite_outline_rounded),
             ),
           ],
         ),

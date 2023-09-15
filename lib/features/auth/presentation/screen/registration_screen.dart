@@ -105,7 +105,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    PrimrayButton(
+                    PrimaryButton(
                       onPressed: () => _register(),
                       isLoading: userState is AsyncLoading<void>,
                       text: AppLocalizations.of(context)!.signUp,

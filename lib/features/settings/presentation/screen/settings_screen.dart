@@ -17,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text('Profile'),
-              PrimrayButton(
+              PrimaryButton(
                 onPressed: () => FirebaseAuth.instance.signOut(),
                 text: 'Sign out',
                 isLoading: false,

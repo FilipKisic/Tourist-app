@@ -67,7 +67,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                 label: AppLocalizations.of(context)!.email,
               ),
               const SizedBox(height: 30),
-              PrimrayButton(
+              PrimaryButton(
                 onPressed: () => ref.read(userProvider).resetPassword(_emailController.text.trim()),
                 text: AppLocalizations.of(context)!.reset,
                 isLoading: resetState is AsyncLoading<void>,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
 
-class PrimrayButton extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final bool isLoading;
 
-  const PrimrayButton({
+  const PrimaryButton({
     super.key,
     required this.onPressed,
     required this.text,

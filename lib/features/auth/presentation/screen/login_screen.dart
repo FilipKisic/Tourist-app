@@ -97,7 +97,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    PrimrayButton(
+                    PrimaryButton(
                       onPressed: () => _login(),
                       isLoading: userState is AsyncLoading<void>,
                       text: AppLocalizations.of(context)!.signIn,
