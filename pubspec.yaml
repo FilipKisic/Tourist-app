@@ -28,6 +28,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.7.1
   retrofit_generator: ^7.0.8
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   generate: true
