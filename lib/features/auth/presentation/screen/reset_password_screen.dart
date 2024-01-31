@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
-import 'package:tourist_app/di.dart';
+import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';

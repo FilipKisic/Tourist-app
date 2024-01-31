@@ -10,7 +10,8 @@ import 'package:tourist_app/features/locations/data/api/sight_api.dart';
 import 'package:tourist_app/features/locations/data/repository/sight_repository_impl.dart';
 import 'package:tourist_app/features/locations/domain/repository/sight_repository.dart';
 import 'package:tourist_app/features/locations/domain/usecase/sight_usecases.dart';
-import 'package:tourist_app/features/locations/presentation/riverpod/sight_provider.dart';
+import 'package:tourist_app/features/locations/presentation/controller/list/list_provider.dart';
+import 'package:tourist_app/features/locations/presentation/controller/list/state/list_state.dart';
 
 // ***************** EXTERNAL LIBRARIES ***************** //
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
@@ -49,6 +50,6 @@ final userProvider = ChangeNotifierProvider.autoDispose(
   (ref) => UserProvider(ref.read(authUseCasesProvider)),
 );
 
-final sightProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => SightProvider(ref.watch(sightUseCasesProvider)),
+final sightListProvider = NotifierProvider<SightListNotifier, SightListState>(
+  () => SightListNotifier(),
 );

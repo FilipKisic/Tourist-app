@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/common/presentation/widget/icon_button.dart';
+import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/widget/sight_details_sheet.dart';
 
 class SightDetailsScreen extends ConsumerWidget {
@@ -9,7 +9,8 @@ class SightDetailsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedSight = ref.watch(sightProvider.select((provider) => provider.selectedSight));
+    final sight = ModalRoute.of(context)!.settings.arguments as Sight;
+    
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
@@ -42,7 +43,7 @@ class SightDetailsScreen extends ConsumerWidget {
             ),
             Positioned(
               bottom: 0,
-              child: SightDetailsSheet(sight: selectedSight!),
+              child: SightDetailsSheet(sight: sight),
             ),
             Positioned(
               top: MediaQuery.of(context).size.height * 0.33,

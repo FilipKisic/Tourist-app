@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
+import 'package:tourist_app/core/error/failure.dart';
 import 'package:tourist_app/features/locations/data/api/sight_api.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/domain/repository/sight_repository.dart';
+import 'package:dartz/dartz.dart';
 
 class SightRepositoryImpl implements SightRepository {
   final SightAPI sightAPI;
@@ -8,5 +11,12 @@ class SightRepositoryImpl implements SightRepository {
   const SightRepositoryImpl(this.sightAPI);
 
   @override
-  Future<List<Sight>> getAll() async => sightAPI.getAllSights();
+  Future<Either<Failure, List<Sight>>> getAll() async {
+    try {
+      final response = await sightAPI.getAllSights();
+      return Right(response);
+    } on DioException catch (_) {
+      return const Left(Failure.networkError());
+    }
+  }
 }

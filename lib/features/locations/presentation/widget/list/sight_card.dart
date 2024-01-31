@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
-import 'package:tourist_app/di.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/widget/rating_stars.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,7 +14,7 @@ class SightCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => _redirectToDetailsScreen(context, ref),
+      onTap: () => _redirectToDetailsScreen(context),
       child: Container(
         padding: const EdgeInsets.all(10),
         width: double.maxFinite,
@@ -87,8 +86,7 @@ class SightCard extends ConsumerWidget {
     );
   }
 
-  void _redirectToDetailsScreen(final BuildContext context, final WidgetRef ref) {
-    ref.read(sightProvider).selectSight(sight);
-    Navigator.of(context).pushNamed(RouteGenerator.sightDetailsScreen);
+  void _redirectToDetailsScreen(final BuildContext context) {
+    Navigator.of(context).pushNamed(RouteGenerator.sightDetailsScreen, arguments: sight);
   }
 }

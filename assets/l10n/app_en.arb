@@ -28,5 +28,6 @@
     "profile": "Profile",
     "noAddress": "No address",
     "rating": "Rating:",
-    "showOnMaps": "Show on maps"
+    "showOnMaps": "Show on maps",
+    "emptyState": "No places were found...seems like you have to explore ;D"
 }

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sight.dart';
+part of '../sight.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

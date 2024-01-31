@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/core/error/route_error.dart';
 import 'package:tourist_app/core/presentation/screen/splash_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/login_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/registration_screen.dart';
@@ -41,15 +42,10 @@ class RouteGenerator {
       case favoritesScreen:
         return MaterialPageRoute(builder: (_) => const FavoritesScreen());
       case sightDetailsScreen:
-        return MaterialPageRoute(builder: (_) => const SightDetailsScreen());
+        return MaterialPageRoute(builder: (_) => const SightDetailsScreen(), settings: settings);
       default:
-        throw const RouteException('Route not defined...');
+        throw const RouteError('Route not defined...');
     }
   }
 }
 
-class RouteException implements Exception {
-  final String cause;
-
-  const RouteException(this.cause);
-}

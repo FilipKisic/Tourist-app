@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
-import 'package:tourist_app/di.dart';
+import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
