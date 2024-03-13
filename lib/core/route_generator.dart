@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tourist_app/core/error/route_error.dart';
 import 'package:tourist_app/core/presentation/screen/splash_screen.dart';
-import 'package:tourist_app/features/auth/presentation/screen/login_screen.dart';
-import 'package:tourist_app/features/auth/presentation/screen/registration_screen.dart';
+import 'package:tourist_app/features/auth/presentation/screen/sign_in_screen.dart';
+import 'package:tourist_app/features/auth/presentation/screen/sign_up_screen.dart';
 import 'package:tourist_app/features/auth/presentation/screen/reset_password_screen.dart';
 import 'package:tourist_app/features/common/presentation/screen/home_screen.dart';
 import 'package:tourist_app/features/locations/presentation/screen/favorites_screen.dart';
@@ -12,8 +12,8 @@ import 'package:tourist_app/features/settings/presentation/screen/settings_scree
 
 class RouteGenerator {
   static const splashScreen = '/';
-  static const loginScreen = '/login';
-  static const registerScreen = '/registration';
+  static const signInScreen = '/signIn';
+  static const signUpScreen = '/signUp';
   static const resetScreen = '/reset';
   static const homeScreen = '/home';
   static const sightsScreen = '/sights';
@@ -27,10 +27,10 @@ class RouteGenerator {
     switch(settings.name) {
       case splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
-      case loginScreen:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
-      case registerScreen:
-        return MaterialPageRoute(builder: (_) => const RegisterScreen());
+      case signInScreen:
+        return MaterialPageRoute(builder: (_) => const SignInScreen());
+      case signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
       case resetScreen:
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case homeScreen:

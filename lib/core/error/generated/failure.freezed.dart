@@ -19,32 +19,44 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() networkError,
+    required TResult Function(String error) firebaseError,
+    required TResult Function() generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? networkError,
+    TResult? Function(String error)? firebaseError,
+    TResult? Function()? generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? networkError,
+    TResult Function(String error)? firebaseError,
+    TResult Function()? generalError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NetworkError value) networkError,
+    required TResult Function(_FirebaseError value) firebaseError,
+    required TResult Function(_General value) generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NetworkError value)? networkError,
+    TResult? Function(_FirebaseError value)? firebaseError,
+    TResult? Function(_General value)? generalError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NetworkError value)? networkError,
+    TResult Function(_FirebaseError value)? firebaseError,
+    TResult Function(_General value)? generalError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +118,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() networkError,
+    required TResult Function(String error) firebaseError,
+    required TResult Function() generalError,
   }) {
     return networkError();
   }
@@ -114,6 +128,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? networkError,
+    TResult? Function(String error)? firebaseError,
+    TResult? Function()? generalError,
   }) {
     return networkError?.call();
   }
@@ -122,6 +138,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? networkError,
+    TResult Function(String error)? firebaseError,
+    TResult Function()? generalError,
     required TResult orElse(),
   }) {
     if (networkError != null) {
@@ -134,6 +152,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NetworkError value) networkError,
+    required TResult Function(_FirebaseError value) firebaseError,
+    required TResult Function(_General value) generalError,
   }) {
     return networkError(this);
   }
@@ -142,6 +162,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_NetworkError value)? networkError,
+    TResult? Function(_FirebaseError value)? firebaseError,
+    TResult? Function(_General value)? generalError,
   }) {
     return networkError?.call(this);
   }
@@ -150,6 +172,8 @@ class _$NetworkErrorImpl implements _NetworkError {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NetworkError value)? networkError,
+    TResult Function(_FirebaseError value)? firebaseError,
+    TResult Function(_General value)? generalError,
     required TResult orElse(),
   }) {
     if (networkError != null) {
@@ -161,4 +185,251 @@ class _$NetworkErrorImpl implements _NetworkError {
 
 abstract class _NetworkError implements Failure {
   const factory _NetworkError() = _$NetworkErrorImpl;
+}
+
+/// @nodoc
+abstract class _$$FirebaseErrorImplCopyWith<$Res> {
+  factory _$$FirebaseErrorImplCopyWith(
+          _$FirebaseErrorImpl value, $Res Function(_$FirebaseErrorImpl) then) =
+      __$$FirebaseErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$FirebaseErrorImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$FirebaseErrorImpl>
+    implements _$$FirebaseErrorImplCopyWith<$Res> {
+  __$$FirebaseErrorImplCopyWithImpl(
+      _$FirebaseErrorImpl _value, $Res Function(_$FirebaseErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$FirebaseErrorImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FirebaseErrorImpl implements _FirebaseError {
+  const _$FirebaseErrorImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'Failure.firebaseError(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FirebaseErrorImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FirebaseErrorImplCopyWith<_$FirebaseErrorImpl> get copyWith =>
+      __$$FirebaseErrorImplCopyWithImpl<_$FirebaseErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() networkError,
+    required TResult Function(String error) firebaseError,
+    required TResult Function() generalError,
+  }) {
+    return firebaseError(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? networkError,
+    TResult? Function(String error)? firebaseError,
+    TResult? Function()? generalError,
+  }) {
+    return firebaseError?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? networkError,
+    TResult Function(String error)? firebaseError,
+    TResult Function()? generalError,
+    required TResult orElse(),
+  }) {
+    if (firebaseError != null) {
+      return firebaseError(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NetworkError value) networkError,
+    required TResult Function(_FirebaseError value) firebaseError,
+    required TResult Function(_General value) generalError,
+  }) {
+    return firebaseError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NetworkError value)? networkError,
+    TResult? Function(_FirebaseError value)? firebaseError,
+    TResult? Function(_General value)? generalError,
+  }) {
+    return firebaseError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_FirebaseError value)? firebaseError,
+    TResult Function(_General value)? generalError,
+    required TResult orElse(),
+  }) {
+    if (firebaseError != null) {
+      return firebaseError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FirebaseError implements Failure {
+  const factory _FirebaseError(final String error) = _$FirebaseErrorImpl;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$FirebaseErrorImplCopyWith<_$FirebaseErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GeneralImplCopyWith<$Res> {
+  factory _$$GeneralImplCopyWith(
+          _$GeneralImpl value, $Res Function(_$GeneralImpl) then) =
+      __$$GeneralImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GeneralImplCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$GeneralImpl>
+    implements _$$GeneralImplCopyWith<$Res> {
+  __$$GeneralImplCopyWithImpl(
+      _$GeneralImpl _value, $Res Function(_$GeneralImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GeneralImpl implements _General {
+  const _$GeneralImpl();
+
+  @override
+  String toString() {
+    return 'Failure.generalError()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GeneralImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() networkError,
+    required TResult Function(String error) firebaseError,
+    required TResult Function() generalError,
+  }) {
+    return generalError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? networkError,
+    TResult? Function(String error)? firebaseError,
+    TResult? Function()? generalError,
+  }) {
+    return generalError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? networkError,
+    TResult Function(String error)? firebaseError,
+    TResult Function()? generalError,
+    required TResult orElse(),
+  }) {
+    if (generalError != null) {
+      return generalError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NetworkError value) networkError,
+    required TResult Function(_FirebaseError value) firebaseError,
+    required TResult Function(_General value) generalError,
+  }) {
+    return generalError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NetworkError value)? networkError,
+    TResult? Function(_FirebaseError value)? firebaseError,
+    TResult? Function(_General value)? generalError,
+  }) {
+    return generalError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NetworkError value)? networkError,
+    TResult Function(_FirebaseError value)? firebaseError,
+    TResult Function(_General value)? generalError,
+    required TResult orElse(),
+  }) {
+    if (generalError != null) {
+      return generalError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _General implements Failure {
+  const factory _General() = _$GeneralImpl;
 }

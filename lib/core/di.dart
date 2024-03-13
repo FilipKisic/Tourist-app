@@ -5,12 +5,14 @@ import 'package:tourist_app/features/auth/data/datasource/firebase/user_api.dart
 import 'package:tourist_app/features/auth/data/repository/user_repository_impl.dart';
 import 'package:tourist_app/features/auth/domain/repository/user_repository.dart';
 import 'package:tourist_app/features/auth/domain/usecase/auth_use_cases.dart';
-import 'package:tourist_app/features/auth/presentation/riverpod/user_provider.dart';
+import 'package:tourist_app/features/auth/presentation/controller/reset_password_notifier.dart';
+import 'package:tourist_app/features/auth/presentation/controller/state/auth_state.dart';
+import 'package:tourist_app/features/auth/presentation/controller/auth_notifier.dart';
 import 'package:tourist_app/features/locations/data/api/sight_api.dart';
 import 'package:tourist_app/features/locations/data/repository/sight_repository_impl.dart';
 import 'package:tourist_app/features/locations/domain/repository/sight_repository.dart';
 import 'package:tourist_app/features/locations/domain/usecase/sight_usecases.dart';
-import 'package:tourist_app/features/locations/presentation/controller/list/list_provider.dart';
+import 'package:tourist_app/features/locations/presentation/controller/list/list_notifier.dart';
 import 'package:tourist_app/features/locations/presentation/controller/list/state/list_state.dart';
 
 // ***************** EXTERNAL LIBRARIES ***************** //
@@ -46,8 +48,12 @@ final sightUseCasesProvider = Provider<SightUseCases>(
 );
 
 // ***************** RIVERPOD ***************** //
-final userProvider = ChangeNotifierProvider.autoDispose(
-  (ref) => UserProvider(ref.read(authUseCasesProvider)),
+final authNotifier = NotifierProvider<AuthNotifier, AuthState>(
+  () => AuthNotifier(),
+);
+
+final resetPasswordNotifier = NotifierProvider<ResetPasswordNotifier, AsyncValue<bool>>(
+  () => ResetPasswordNotifier(),
 );
 
 final sightListProvider = NotifierProvider<SightListNotifier, SightListState>(

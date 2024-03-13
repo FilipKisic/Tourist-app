@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Profile'),
+              const Text('Profile'),
               PrimaryButton(
                 onPressed: () => FirebaseAuth.instance.signOut(),
                 text: 'Sign out',

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/di.dart';
+import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
@@ -16,19 +16,25 @@ class ResetPasswordScreen extends ConsumerStatefulWidget {
 
 class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
   final _emailController = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final resetState = ref.watch(userProvider.select((provider) => provider.resetPasswordState));
-
-    ref.listen(userProvider.select((provider) => provider.resetPasswordState), (_, state) {
-      state?.whenOrNull(
-        data: (_) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => CustomSnackBar.show(context, AppLocalizations.of(context)!.verificationEmail),
-        ),
-        error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => CustomSnackBar.show(context, error.toString()),
-        ),
+    ref.listen(resetPasswordNotifier, (_, state) {
+      state.when(
+        loading: () => _isLoading = true,
+        data: (_) {
+          _isLoading = false;
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => CustomSnackBar.show(context, AppLocalizations.of(context)!.verificationEmail),
+          );
+        },
+        error: (error, _) {
+          _isLoading = false;
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => CustomSnackBar.show(context, error.toString()),
+          );
+        },
       );
     });
 
@@ -68,9 +74,11 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               ),
               const SizedBox(height: 30),
               PrimaryButton(
-                onPressed: () => ref.read(userProvider).resetPassword(_emailController.text.trim()),
+                onPressed: () => ref
+                    .read(resetPasswordNotifier.notifier)
+                    .resetPassword(_emailController.text.trim()),
                 text: AppLocalizations.of(context)!.reset,
-                isLoading: resetState is AsyncLoading<void>,
+                isLoading: _isLoading,
               ),
             ],
           ),

@@ -1,41 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/di.dart';
+import 'package:tourist_app/core/error/failure.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
-import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
-class RegisterScreen extends ConsumerStatefulWidget {
-  const RegisterScreen({super.key});
+class SignUpScreen extends ConsumerStatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignUpScreenState();
 }
 
-class _RegisterScreenState extends ConsumerState<RegisterScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _isPasswordObscure = true;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final userState = ref.watch(userProvider.select((provider) => provider.userAuthState));
-
-    ref.listen(userProvider.select((provider) => provider.userAuthState), (_, state) {
-      state?.whenOrNull(
-        data: (_) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
-        ),
-        error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => _showErrorOnSnackBar(error.toString()),
-        ),
+    ref.listen(authNotifier, (_, state) {
+      state.when(
+        unauthenticated: (error, fromSignIn) {
+          setState(() => _isLoading = false);
+          if (!fromSignIn) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => _showErrorOnSnackBar(error!),
+            );
+          }
+        },
+        loading: () => setState(() => _isLoading = true),
+        authenticated: (_) {
+          setState(() => _isLoading = false);
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => Navigator.of(context)
+                .pushNamedAndRemoveUntil(RouteGenerator.homeScreen, (_) => false),
+          );
+        },
       );
     });
 
@@ -43,8 +53,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Navigator.of(context).pushReplacementNamed(RouteGenerator.loginScreen),
-          icon: const Icon(Icons.chevron_left_rounded), //! should pop() instead of push()
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.chevron_left_rounded),
         ),
         title: Text(
           AppLocalizations.of(context)!.signUp,
@@ -106,8 +116,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     ),
                     const SizedBox(height: 40),
                     PrimaryButton(
-                      onPressed: () => _register(),
-                      isLoading: userState is AsyncLoading<void>,
+                      onPressed: _register,
+                      isLoading: _isLoading,
                       text: AppLocalizations.of(context)!.signUp,
                     ),
                     const SizedBox(height: 80),
@@ -149,21 +159,29 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     super.dispose();
   }
 
-  void _showErrorOnSnackBar(final String error) {
-    if (error == 'weak-password') {
-      CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordComplexityValidation);
-    } else if (error.toString() == 'email-already-in-use') {
-      CustomSnackBar.show(context, AppLocalizations.of(context)!.emailAlreadyExists);
-    } else {
-      CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError);
-    }
+  void _showErrorOnSnackBar(final Failure error) {
+    error.when(
+      networkError: () =>
+          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError),
+      generalError: () =>
+          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError),
+      firebaseError: (code) {
+        if (code == 'weak-password') {
+          CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordComplexityValidation);
+        } else if (code == 'email-already-in-use') {
+          CustomSnackBar.show(context, AppLocalizations.of(context)!.emailAlreadyExists);
+        } else {
+          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError);
+        }
+      },
+    );
   }
 
   void _register() {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
       if (doPasswordsMatch(_passwordController.text, _confirmPasswordController.text)) {
-        ref.read(userProvider).registerUser(
+        ref.read(authNotifier.notifier).register(
               _emailController.text.trim(),
               _passwordController.text.trim(),
             );
@@ -173,6 +191,5 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     }
   }
 
-  void _redirectToLoginScreen() =>
-      Navigator.of(context).pushReplacementNamed(RouteGenerator.loginScreen);
+  void _redirectToLoginScreen() => Navigator.of(context).pop();
 }

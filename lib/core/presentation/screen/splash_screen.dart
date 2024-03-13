@@ -31,4 +31,4 @@ void _redirectToNextScreen(final BuildContext context) =>
     Future.delayed(const Duration(milliseconds: 1500)).then((_) =>
         FirebaseAuth.instance.currentUser != null
             ? Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen)
-            : Navigator.of(context).pushReplacementNamed(RouteGenerator.loginScreen));
+            : Navigator.of(context).pushReplacementNamed(RouteGenerator.signInScreen));

@@ -1,43 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
-import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends ConsumerStatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignInScreenState extends ConsumerState<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordObscure = true;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final userState = ref.watch(userProvider.select((provider) => provider.userAuthState));
-
-    ref.listen(userProvider.select((provider) => provider.userAuthState), (_, state) {
-      state?.whenOrNull(
-        data: (_) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
-        ),
-        error: (error, _) => WidgetsBinding.instance.addPostFrameCallback(
-          (_) => CustomSnackBar.show(
-            context,
-            AppLocalizations.of(context)!.wrongEmailOrPassword,
-          ),
-        ),
+    ref.listen(authNotifier, (_, state) {
+      state.whenOrNull(
+        unauthenticated: (error, shouldShow) {
+          setState(() => _isLoading = false);
+          if (shouldShow) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => CustomSnackBar.show(
+                context,
+                AppLocalizations.of(context)!.wrongEmailOrPassword,
+              ),
+            );
+          }
+        },
+        loading: () => setState(() => _isLoading = true),
+        authenticated: (_) {
+          setState(() => _isLoading = true);
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => Navigator.of(context).pushReplacementNamed(RouteGenerator.homeScreen),
+          );
+        },
       );
     });
 
@@ -98,8 +106,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                     const SizedBox(height: 40),
                     PrimaryButton(
-                      onPressed: () => _login(),
-                      isLoading: userState is AsyncLoading<void>,
+                      onPressed: _login,
+                      isLoading: _isLoading,
                       text: AppLocalizations.of(context)!.signIn,
                     ),
                     const SizedBox(height: 80),
@@ -143,13 +151,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   void _login() async {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (_formKey.currentState!.validate()) {
-      await ref.read(userProvider).loginUser(
+      await ref.read(authNotifier.notifier).login(
             _emailController.text.trim(),
             _passwordController.text.trim(),
           );
     }
   }
 
-  void _redirectToRegisterScreen() =>
-      Navigator.of(context).pushReplacementNamed(RouteGenerator.registerScreen);
+  void _redirectToRegisterScreen() => Navigator.of(context).pushNamed(RouteGenerator.signUpScreen);
 }

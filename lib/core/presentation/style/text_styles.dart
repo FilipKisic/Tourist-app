@@ -7,7 +7,11 @@ const standardTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w600);
 const descriptionTextStyle = TextStyle(fontSize: 14);
 const labelTextStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
 const errorTextStyle = TextStyle(fontSize: 12, fontWeight: FontWeight.w600);
-const snackbarTextStyle = TextStyle(fontSize: 13, fontWeight: FontWeight.bold);
+const snackbarTextStyle = TextStyle(
+  fontSize: 13,
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+);
 const buttonTextStyle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.bold,
