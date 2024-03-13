@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -18,17 +18,14 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       style: ElevatedButton.styleFrom(
-        foregroundColor: Colors.orange,
+        foregroundColor: context.colorPrimary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         padding: EdgeInsets.zero,
       ),
       child: Ink(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.secondary,
-            ],
+            colors: [context.colorPrimary, context.colorSecondary],
           ),
           borderRadius: BorderRadius.circular(15.0),
         ),
@@ -37,10 +34,7 @@ class PrimaryButton extends StatelessWidget {
           alignment: Alignment.center,
           child: isLoading
               ? const CircularProgressIndicator(color: Colors.white)
-              : Text(
-                  text,
-                  style: Theme.of(context).textTheme.buttonText,
-                ),
+              : Text(text, style: context.textButton),
         ),
       ),
     );

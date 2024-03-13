@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 
 class CustomSnackBar {
   const CustomSnackBar._();
@@ -10,14 +10,14 @@ class CustomSnackBar {
         content: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.info_rounded, color: Theme.of(context).colorScheme.secondary,),
+            Icon(Icons.info_rounded, color: context.colorSecondary),
             const SizedBox(width: 5),
-            Text(text, style: Theme.of(context).textTheme.snackbar),
+            Text(text, style: context.textSnackbar),
           ],
         ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: context.colorBackground,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Theme.of(context).colorScheme.secondary, width: 2),
+          side: BorderSide(color: context.colorSecondary, width: 2),
           borderRadius: BorderRadius.circular(15),
         ),
         behavior: SnackBarBehavior.floating,

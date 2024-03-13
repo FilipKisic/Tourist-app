@@ -3,8 +3,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/error/failure.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/auth/presentation/widget/password_visibilty_toggle.dart';
@@ -58,7 +58,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         ),
         title: Text(
           AppLocalizations.of(context)!.signUp,
-          style: Theme.of(context).textTheme.appBarTitle,
+          style: context.textAppBar,
         ),
       ),
       body: GestureDetector(
@@ -81,7 +81,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     ),
                     Text(
                       AppLocalizations.of(context)!.signUpTitle,
-                      style: Theme.of(context).textTheme.standard,
+                      style: context.textStandard,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
@@ -126,17 +126,14 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       children: [
                         Text(
                           AppLocalizations.of(context)!.alreadyHaveAnAccount,
-                          style: Theme.of(context).textTheme.standard,
+                          style: context.textStandard,
                         ),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToLoginScreen,
                           child: Text(
                             AppLocalizations.of(context)!.signIn,
-                            style: Theme.of(context)
-                                .textTheme
-                                .standard
-                                .copyWith(color: Theme.of(context).colorScheme.secondary),
+                            style: context.textHighlightStandard,
                           ),
                         ),
                       ],

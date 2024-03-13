@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/util/map_utils.dart';
@@ -20,7 +20,7 @@ class SightDetailsSheet extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: context.colorBackground,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -29,10 +29,10 @@ class SightDetailsSheet extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(sight.title, style: Theme.of(context).textTheme.title),
+              Text(sight.title, style: context.textTitle),
               Text(
                 sight.address ?? AppLocalizations.of(context)!.noAddress,
-                style: Theme.of(context).textTheme.standard,
+                style: context.textStandard,
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 20),
@@ -40,16 +40,13 @@ class SightDetailsSheet extends StatelessWidget {
               SizedBox(
                 height: 30,
                 child: RatingStars(
-                  inactiveColor: Theme.of(context).colorScheme.tertiaryContainer,
+                  inactiveColor: context.colorRatingInactive,
                   rating: sight.rating,
                   iconSize: 27,
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
-                sight.description ?? '',
-                style: Theme.of(context).textTheme.description,
-              ),
+              Text(sight.description ?? '', style: context.textDescription),
               const Spacer(),
               PrimaryButton(
                 onPressed: () => MapUtils.openLocationInMaps(sight.lat, sight.lng, sight.title),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 
 class CircularIconButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -17,8 +18,8 @@ class CircularIconButton extends StatelessWidget {
         shape: BoxShape.circle,
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.secondary,
+            context.colorPrimary,
+            context.colorSecondary,
           ],
         ),
       ),

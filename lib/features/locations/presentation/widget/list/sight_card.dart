@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/route_generator.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/widget/rating_stars.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SightCard extends ConsumerWidget {
   final Sight sight;
@@ -22,8 +24,8 @@ class SightCard extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.secondary,
+              context.colorPrimary,
+              context.colorSecondary,
             ],
           ),
           borderRadius: BorderRadius.circular(10),
@@ -31,7 +33,7 @@ class SightCard extends ConsumerWidget {
             BoxShadow(
               offset: const Offset(0, 5),
               blurRadius: 10,
-              color: Theme.of(context).shadowColor,
+              color: context.colorShadow,
             ),
           ],
         ),
@@ -54,19 +56,19 @@ class SightCard extends ConsumerWidget {
                 children: [
                   Text(
                     sight.title,
-                    style: Theme.of(context).textTheme.cardTitle,
+                    style: context.textCardTitle,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 5),
                   Text(
                     sight.address ?? AppLocalizations.of(context)!.noAddress,
-                    style: Theme.of(context).textTheme.cardSubtitle,
+                    style: context.textCardSubtitle,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 3),
                   Text(
                     '${sight.lat}, ${sight.lng}',
-                    style: Theme.of(context).textTheme.cardSmall,
+                    style: context.textCardSmall,
                   ),
                   const Spacer(),
                   Expanded(child: RatingStars(rating: sight.rating)),
@@ -74,7 +76,7 @@ class SightCard extends ConsumerWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => print('Favorite pressed!'),
+              onTap: () => log('Favorite pressed!'),
               child: const Icon(
                 Icons.favorite_outline_rounded,
                 color: Colors.white,
@@ -86,7 +88,6 @@ class SightCard extends ConsumerWidget {
     );
   }
 
-  void _redirectToDetailsScreen(final BuildContext context) {
-    Navigator.of(context).pushNamed(RouteGenerator.sightDetailsScreen, arguments: sight);
-  }
+  void _redirectToDetailsScreen(final BuildContext context) =>
+      Navigator.of(context).pushNamed(RouteGenerator.sightDetailsScreen, arguments: sight);
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -27,74 +27,60 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: Theme.of(context).textTheme.label,
+      style: context.textLabel,
       decoration: InputDecoration(
+        fillColor: context.colorBackground,
         floatingLabelBehavior: FloatingLabelBehavior.never,
         filled: true,
         alignLabelWithHint: true,
         isDense: true,
-        label: Text(
-          label,
-          style: Theme.of(context).textTheme.label,
-        ),
+        label: Text(label, style: context.textLabel),
         suffixIcon: suffixIcon,
         border: DecoratedInputBorder(
           shadow: BoxShadow(
-            color: Theme.of(context).shadowColor,
+            color: context.colorShadow,
             blurRadius: 5,
             offset: const Offset(1, 5),
           ),
           child: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: Theme.of(context).colorScheme.outline,
-            ),
+            borderSide: BorderSide(width: 1, color: context.colorBorder),
             borderRadius: BorderRadius.circular(15),
           ),
         ),
         enabledBorder: DecoratedInputBorder(
           shadow: BoxShadow(
-            color: Theme.of(context).shadowColor,
+            color: context.colorShadow,
             blurRadius: 5,
             offset: const Offset(1, 5),
           ),
           child: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: Theme.of(context).colorScheme.outline,
-            ),
+            borderSide: BorderSide(width: 1, color: context.colorBorder),
             borderRadius: BorderRadius.circular(15),
           ),
         ),
         focusedBorder: DecoratedInputBorder(
           shadow: BoxShadow(
-            color: Theme.of(context).shadowColor,
+            color: context.colorShadow,
             blurRadius: 5,
             offset: const Offset(1, 5),
           ),
           child: OutlineInputBorder(
-            borderSide: BorderSide(
-              width: 1,
-              color: Theme.of(context).colorScheme.outline,
-            ),
+            borderSide: BorderSide(width: 1, color: context.colorBorder),
             borderRadius: BorderRadius.circular(15),
           ),
         ),
         errorBorder: DecoratedInputBorder(
           shadow: BoxShadow(
-            color: Theme.of(context).shadowColor,
+            color: context.colorShadow,
             blurRadius: 5,
             offset: const Offset(1, 5),
           ),
           child: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Theme.of(context).colorScheme.error),
+            borderSide: BorderSide(width: 1, color: context.colorError),
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        errorStyle: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(color: Theme.of(context).colorScheme.error),
+        errorStyle: context.textError,
       ),
       validator: validator,
       textInputAction: textInputAction,
@@ -103,7 +89,6 @@ class CustomTextFormField extends StatelessWidget {
           autoValidate ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
       autocorrect: false,
       keyboardType: textInputType,
-      
     );
   }
 }
@@ -133,8 +118,12 @@ class DecoratedInputBorder extends InputBorder {
   EdgeInsetsGeometry get dimensions => child.dimensions;
 
   @override
-  InputBorder copyWith(
-      {BorderSide? borderSide, InputBorder? child, BoxShadow? shadow, bool? isOutline}) {
+  InputBorder copyWith({
+    BorderSide? borderSide,
+    InputBorder? child,
+    BoxShadow? shadow,
+    bool? isOutline,
+  }) {
     return DecoratedInputBorder(
       child: (child ?? this.child).copyWith(borderSide: borderSide),
       shadow: shadow ?? this.shadow,
@@ -152,11 +141,14 @@ class DecoratedInputBorder extends InputBorder {
   }
 
   @override
-  void paint(Canvas canvas, Rect rect,
-      {double? gapStart,
-      double gapExtent = 0.0,
-      double gapPercentage = 0.0,
-      TextDirection? textDirection}) {
+  void paint(
+    Canvas canvas,
+    Rect rect, {
+    double? gapStart,
+    double gapExtent = 0.0,
+    double gapPercentage = 0.0,
+    TextDirection? textDirection,
+  }) {
     final clipPath = Path()
       ..addRect(const Rect.fromLTWH(-5000, -5000, 10000, 10000))
       ..addPath(getInnerPath(rect), Offset.zero)
@@ -168,11 +160,14 @@ class DecoratedInputBorder extends InputBorder {
 
     canvas.drawPath(getOuterPath(bounds), paint);
 
-    child.paint(canvas, rect,
-        gapStart: gapStart,
-        gapExtent: gapExtent,
-        gapPercentage: gapPercentage,
-        textDirection: textDirection);
+    child.paint(
+      canvas,
+      rect,
+      gapStart: gapStart,
+      gapExtent: gapExtent,
+      gapPercentage: gapPercentage,
+      textDirection: textDirection,
+    );
   }
 
   @override

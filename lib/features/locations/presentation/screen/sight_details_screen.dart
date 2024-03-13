@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/common/presentation/widget/icon_button.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/widget/sight_details_sheet.dart';
@@ -12,7 +13,7 @@ class SightDetailsScreen extends ConsumerWidget {
     final sight = ModalRoute.of(context)!.settings.arguments as Sight;
     
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: context.colorBackground,
       body: SafeArea(
         top: false,
         child: Stack(
@@ -30,14 +31,14 @@ class SightDetailsScreen extends ConsumerWidget {
               left: 30,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
+                  color: context.colorBackground,
                   borderRadius: BorderRadius.circular(50),
                 ),
                 child: IconButton(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.chevron_left_rounded),
                   iconSize: 30,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.colorSecondary,
                 ),
               ),
             ),

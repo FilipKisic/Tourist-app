@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tourist_app/core/presentation/style/colors.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 
 class RatingStars extends StatelessWidget {
   final int rating;
@@ -25,7 +25,7 @@ class RatingStars extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => Icon(
             Icons.star_rounded,
-            color: activeColor ?? Theme.of(context).colorScheme.tertiary,
+            color: activeColor ?? context.colorRatingActive,
             size: iconSize,
           ),
           itemCount: rating,
@@ -35,7 +35,7 @@ class RatingStars extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => Icon(
             Icons.star_rounded,
-            color: inactiveColor ?? whiteColor,
+            color: inactiveColor ?? context.colorRatingInactive,
             size: iconSize,
           ),
           itemCount: 5 - rating,

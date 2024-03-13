@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
-import 'package:tourist_app/core/presentation/style/app_theme.dart';
 import 'package:tourist_app/core/di.dart';
+import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/empty_state_widget.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/error_state_widget.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/sight_card.dart';
@@ -23,7 +23,7 @@ class SightsScreen extends ConsumerWidget {
             children: [
               Text(
                 AppLocalizations.of(context)!.sights,
-                style: Theme.of(context).textTheme.title,
+                style: context.textTitle,
               ),
               const SizedBox(height: 20),
               Expanded(
