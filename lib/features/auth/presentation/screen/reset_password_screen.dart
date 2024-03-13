@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/di.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/auth/presentation/widget/custom_text_form_field.dart';
 import 'package:tourist_app/features/common/presentation/widget/custom_snackbar.dart';
@@ -26,7 +26,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         data: (_) {
           _isLoading = false;
           WidgetsBinding.instance.addPostFrameCallback(
-            (_) => CustomSnackBar.show(context, AppLocalizations.of(context)!.verificationEmail),
+            (_) => CustomSnackBar.show(context, context.localVerificationEmail),
           );
         },
         error: (error, _) {
@@ -44,10 +44,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.chevron_left_rounded),
         ),
-        title: Text(
-          AppLocalizations.of(context)!.resetPassword,
-          style: context.textAppBar,
-        ),
+        title: Text(context.localResetPassword, style: context.textAppBar),
       ),
       body: SafeArea(
         child: Padding(
@@ -62,7 +59,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 0),
                 child: Text(
-                  AppLocalizations.of(context)!.resetPasswordTitle,
+                  context.localResetPasswordTitle,
                   style: context.textStandard,
                   textAlign: TextAlign.center,
                 ),
@@ -70,14 +67,14 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
               const SizedBox(height: 30),
               CustomTextFormField(
                 controller: _emailController,
-                label: AppLocalizations.of(context)!.email,
+                label: context.localEmail,
               ),
               const SizedBox(height: 30),
               PrimaryButton(
                 onPressed: () => ref
                     .read(resetPasswordNotifier.notifier)
                     .resetPassword(_emailController.text.trim()),
-                text: AppLocalizations.of(context)!.reset,
+                text: context.localReset,
                 isLoading: _isLoading,
               ),
             ],

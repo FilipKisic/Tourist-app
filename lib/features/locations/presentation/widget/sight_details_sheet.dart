@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/common/presentation/widget/primary_button.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
@@ -31,12 +31,12 @@ class SightDetailsSheet extends StatelessWidget {
             children: [
               Text(sight.title, style: context.textTitle),
               Text(
-                sight.address ?? AppLocalizations.of(context)!.noAddress,
+                sight.address ?? context.localNoAddress,
                 style: context.textStandard,
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 20),
-              Text(AppLocalizations.of(context)!.rating),
+              Text(context.localRating),
               SizedBox(
                 height: 30,
                 child: RatingStars(
@@ -50,7 +50,7 @@ class SightDetailsSheet extends StatelessWidget {
               const Spacer(),
               PrimaryButton(
                 onPressed: () => MapUtils.openLocationInMaps(sight.lat, sight.lng, sight.title),
-                text: AppLocalizations.of(context)!.showOnMaps,
+                text: context.localShowOnMaps,
                 isLoading: false,
               ),
             ],

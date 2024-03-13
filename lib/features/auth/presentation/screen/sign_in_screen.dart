@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/di.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
@@ -32,10 +32,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
           setState(() => _isLoading = false);
           if (shouldShow) {
             WidgetsBinding.instance.addPostFrameCallback(
-              (_) => CustomSnackBar.show(
-                context,
-                AppLocalizations.of(context)!.wrongEmailOrPassword,
-              ),
+              (_) => CustomSnackBar.show(context, context.localWrongEmailOrPassword),
             );
           }
         },
@@ -69,13 +66,13 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                       ),
                     ),
                     Text(
-                      AppLocalizations.of(context)!.signInTitle,
+                      context.localSignInTitle,
                       style: context.textStandard,
                     ),
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _emailController,
-                      label: AppLocalizations.of(context)!.email,
+                      label: context.localEmail,
                       textInputAction: TextInputAction.next,
                       validator: (value) => validateEmail(context, value),
                       textInputType: TextInputType.emailAddress,
@@ -83,7 +80,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _passwordController,
-                      label: AppLocalizations.of(context)!.password,
+                      label: context.localPassword,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
                       suffixIcon: PasswordVisibilityToggle(
@@ -97,10 +94,7 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                         onTap: () => Navigator.of(context).pushNamed(RouteGenerator.resetScreen),
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          child: Text(
-                            AppLocalizations.of(context)!.forgotPassword,
-                            style: context.textStandard,
-                          ),
+                          child: Text(context.localForgotPassword, style: context.textStandard),
                         ),
                       ),
                     ),
@@ -108,21 +102,18 @@ class _SignInScreenState extends ConsumerState<SignInScreen> {
                     PrimaryButton(
                       onPressed: _login,
                       isLoading: _isLoading,
-                      text: AppLocalizations.of(context)!.signIn,
+                      text: context.localSignIn,
                     ),
                     const SizedBox(height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.dontHaveAnAccount,
-                          style: context.textStandard,
-                        ),
+                        Text(context.localDontHaveAccount, style: context.textStandard),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToRegisterScreen,
                           child: Text(
-                            AppLocalizations.of(context)!.createAccount,
+                            context.localCreateAccount,
                             style: context.textHighlightStandard,
                           ),
                         ),

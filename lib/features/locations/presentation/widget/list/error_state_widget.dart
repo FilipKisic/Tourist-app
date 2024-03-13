@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 
 class ErrorStateWidget extends StatelessWidget {
@@ -11,10 +11,7 @@ class ErrorStateWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Image(image: AssetImage('assets/images/error_404_image.png')),
-        Text(
-          AppLocalizations.of(context)!.thereWasAnError,
-          style: context.textStandard,
-        ),
+        Text(context.localThereWasAnError, style: context.textStandard),
       ],
     );
   }

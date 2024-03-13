@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 
 String? validateEmail(final BuildContext context, final String? value) {
   if (value == null || value.isEmpty) {
-    return AppLocalizations.of(context)!.emailEmptyValidation;
+    return context.localEmailEmptyValidation;
   }
   if (_isNotValidEmailAddress(value)) {
-    return AppLocalizations.of(context)!.emailAddressValidation;
+    return context.localEmailAddressValidation;
   }
   return null;
 }
@@ -17,9 +17,9 @@ bool _isNotValidEmailAddress(final String value) => !RegExp(
 
 String? validatePassword(final BuildContext context, final String? value) {
   if (value == null || value.isEmpty) {
-    return AppLocalizations.of(context)!.passwordEmptyValidation;
+    return context.localPasswordEmptyValidation;
   } else if (value.length < 8) {
-    return AppLocalizations.of(context)!.passwordLengthValidation;
+    return context.localPasswordLengthValidation;
   } else {
     return null;
   }

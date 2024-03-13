@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/locations/presentation/screen/favorites_screen.dart';
 import 'package:tourist_app/features/locations/presentation/screen/sights_screen.dart';
@@ -35,17 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.explore_outlined),
             activeIcon: const Icon(Icons.explore_rounded),
-            label: AppLocalizations.of(context)!.sights,
+            label: context.localSights,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.favorite_outline_rounded),
             activeIcon: const Icon(Icons.favorite_rounded),
-            label: AppLocalizations.of(context)!.favorites,
+            label: context.localFavorites,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.person_outline_rounded),
             activeIcon: const Icon(Icons.person_rounded),
-            label: AppLocalizations.of(context)!.profile,
+            label: context.localProfile,
           ),
         ],
       ),

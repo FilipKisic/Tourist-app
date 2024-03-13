@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/error/failure.dart';
+import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/auth/presentation/util/utils.dart';
@@ -56,10 +56,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           onPressed: () => Navigator.of(context).pop(),
           icon: const Icon(Icons.chevron_left_rounded),
         ),
-        title: Text(
-          AppLocalizations.of(context)!.signUp,
-          style: context.textAppBar,
-        ),
+        title: Text(context.localSignUp, style: context.textAppBar),
       ),
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -79,14 +76,11 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         child: Image(image: AssetImage('assets/images/login_image.png')),
                       ),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.signUpTitle,
-                      style: context.textStandard,
-                    ),
+                    Text(context.localSignUpTitle, style: context.textStandard),
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _emailController,
-                      label: AppLocalizations.of(context)!.email,
+                      label: context.localEmail,
                       textInputAction: TextInputAction.next,
                       validator: (value) => validateEmail(context, value),
                       textInputType: TextInputType.emailAddress,
@@ -94,7 +88,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _passwordController,
-                      label: AppLocalizations.of(context)!.password,
+                      label: context.localPassword,
                       textInputAction: TextInputAction.next,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
@@ -106,7 +100,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     const SizedBox(height: 20),
                     CustomTextFormField(
                       controller: _confirmPasswordController,
-                      label: AppLocalizations.of(context)!.password,
+                      label: context.localPassword,
                       isObscure: _isPasswordObscure,
                       validator: (value) => validatePassword(context, value),
                       suffixIcon: PasswordVisibilityToggle(
@@ -118,23 +112,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                     PrimaryButton(
                       onPressed: _register,
                       isLoading: _isLoading,
-                      text: AppLocalizations.of(context)!.signUp,
+                      text: context.localSignUp,
                     ),
                     const SizedBox(height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.alreadyHaveAnAccount,
-                          style: context.textStandard,
-                        ),
+                        Text(context.localAlreadyHaveAnAccount, style: context.textStandard),
                         const SizedBox(width: 5),
                         GestureDetector(
                           onTap: _redirectToLoginScreen,
-                          child: Text(
-                            AppLocalizations.of(context)!.signIn,
-                            style: context.textHighlightStandard,
-                          ),
+                          child: Text(context.localSignIn, style: context.textHighlightStandard),
                         ),
                       ],
                     ),
@@ -158,17 +146,15 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   void _showErrorOnSnackBar(final Failure error) {
     error.when(
-      networkError: () =>
-          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError),
-      generalError: () =>
-          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError),
+      networkError: () => CustomSnackBar.show(context, context.localThereWasAnError),
+      generalError: () => CustomSnackBar.show(context, context.localThereWasAnError),
       firebaseError: (code) {
         if (code == 'weak-password') {
-          CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordComplexityValidation);
+          CustomSnackBar.show(context, context.localPasswordComplexityValidation);
         } else if (code == 'email-already-in-use') {
-          CustomSnackBar.show(context, AppLocalizations.of(context)!.emailAlreadyExists);
+          CustomSnackBar.show(context, context.localEmailAlreadyExists);
         } else {
-          CustomSnackBar.show(context, AppLocalizations.of(context)!.thereWasAnError);
+          CustomSnackBar.show(context, context.localThereWasAnError);
         }
       },
     );
@@ -183,7 +169,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               _passwordController.text.trim(),
             );
       } else {
-        CustomSnackBar.show(context, AppLocalizations.of(context)!.passwordsDoNotMatch);
+        CustomSnackBar.show(context, context.localPasswordsDoNotMatch);
       }
     }
   }
