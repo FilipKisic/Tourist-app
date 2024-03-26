@@ -29,5 +29,8 @@
     "noAddress": "No address",
     "rating": "Rating:",
     "showOnMaps": "Show on maps",
-    "emptyState": "No places were found...seems like you have to explore ;D"
+    "emptyListStateTitle": "No places found",
+    "emptyListStateDescription": "Seems like you have to explore landmarks by yourself, find new to show here ;D",
+    "emptyFavoritesTitle": "There are no favorites yet...",
+    "emptyFavoritesDescription": "Here you will see all your favorite sights. Mark them as favorite by pressing the heart icon."
 }

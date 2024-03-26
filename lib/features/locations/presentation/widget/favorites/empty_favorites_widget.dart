@@ -1,27 +1,29 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 
-class EmptyStateWidget extends StatelessWidget {
-  const EmptyStateWidget({super.key});
+class EmptyFavoritesWidget extends StatelessWidget {
+  const EmptyFavoritesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Image(image: AssetImage('assets/images/login_image.png'), width: 150),
-        const SizedBox(height: 20),
+        Image.asset(
+          'assets/images/empty_favorites.png',
+          width: 220,
+        ),
         Text(
-          context.localEmptyListTitle,
+          context.localEmptyFavoriteTitle,
           style: context.textStateTitle,
           textAlign: TextAlign.center,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Text(
-            context.localEmptyListDescription,
+            context.localEmptyFavoriteDescription,
             style: context.textStandardLight,
             textAlign: TextAlign.center,
           ),

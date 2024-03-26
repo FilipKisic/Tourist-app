@@ -16,6 +16,7 @@ extension StyleExtension on BuildContext {
   TextStyle get textAppBar => Theme.of(this).textTheme.appBar;
   TextStyle get textTitle => Theme.of(this).textTheme.title;
   TextStyle get textStandard => Theme.of(this).textTheme.standard;
+  TextStyle get textStandardLight => Theme.of(this).textTheme.standard.copyWith(fontWeight: FontWeight.normal);
   TextStyle get textDescription => Theme.of(this).textTheme.description;
   TextStyle get textLabel => Theme.of(this).textTheme.label;
   TextStyle get textError => Theme.of(this).textTheme.error.copyWith(color: colorError);
@@ -25,4 +26,5 @@ extension StyleExtension on BuildContext {
   TextStyle get textCardSubtitle => Theme.of(this).textTheme.cardSubtitle;
   TextStyle get textCardSmall => Theme.of(this).textTheme.cardSmall;
   TextStyle get textHighlightStandard => Theme.of(this).textTheme.standard.copyWith(color: colorSecondary);
+  TextStyle get textStateTitle => Theme.of(this).textTheme.stateTitle;
 }

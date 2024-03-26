@@ -28,6 +28,10 @@ const _cardSmallTextStyle = TextStyle(
   fontWeight: FontWeight.normal,
   color: whiteColor,
 );
+const _stateTitleTextStyle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+);
 
 extension CustomTextStyle on TextTheme {
   TextStyle get appBar => _appBarTextStyle;
@@ -41,4 +45,5 @@ extension CustomTextStyle on TextTheme {
   TextStyle get cardTitle => _cardTitleTextStyle;
   TextStyle get cardSubtitle => _cardSubtitleTextStyle;
   TextStyle get cardSmall => _cardSmallTextStyle;
+  TextStyle get stateTitle => _stateTitleTextStyle;
 }

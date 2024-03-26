@@ -32,5 +32,8 @@ extension LocalizationExtension on BuildContext {
   String get localNoAddress => AppLocalizations.of(this)!.noAddress;
   String get localRating => AppLocalizations.of(this)!.rating;
   String get localShowOnMaps => AppLocalizations.of(this)!.showOnMaps;
-  String get localEmptyState => AppLocalizations.of(this)!.emptyState;
+  String get localEmptyListTitle => AppLocalizations.of(this)!.emptyListStateTitle;
+  String get localEmptyListDescription => AppLocalizations.of(this)!.emptyListStateDescription;
+  String get localEmptyFavoriteTitle => AppLocalizations.of(this)!.emptyFavoritesTitle;
+  String get localEmptyFavoriteDescription => AppLocalizations.of(this)!.emptyFavoritesDescription;
 }

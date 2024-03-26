@@ -29,5 +29,8 @@
     "noAddress": "Nema adrese",
     "rating": "Ocjena:",
     "showOnMaps": "Prikaži na karti",
-    "emptyState": "Lokacije nisu pronađene...čini se da te čeka avantura ;D"
+    "emptyListStateTitle": "Lokacije nisu pronađene",
+    "emptyListStateDescription": "Čini se da te čeka avantura za istražiti, pronađi da se prikaže ovdje ;D",
+    "emptyFavoritesTitle": "Nema favorite...",
+    "emptyFavoritesDescription": "Ovdje ćeš vidjeti sve svoje favorite. Označi favorita pritiskom na ikonu srca kartice."
 }

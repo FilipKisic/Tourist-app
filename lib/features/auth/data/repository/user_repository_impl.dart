@@ -13,7 +13,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, User?>> loginUser(final String email, final String password) async {
     try {
       final result = await _api.loginUser(email, password);
-      return Right(result);
+      return Right(result); 
     } on FirebaseAuthException catch (e) {
       return Left(Failure.firebaseError(e.code));
     } catch (e) {
