@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
+import 'package:tourist_app/features/locations/presentation/controller/list/list_state.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/empty_state_widget.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/error_state_widget.dart';
 import 'package:tourist_app/features/locations/presentation/widget/list/sight_card.dart';
@@ -24,18 +25,18 @@ class SightsScreen extends ConsumerWidget {
               Text(context.localSights, style: context.textTitle),
               const SizedBox(height: 20),
               Expanded(
-                child: sightListState.when(
-                  loading: () => Center(
-                    child: Lottie.asset('assets/animations/loading_sights.json', height: 65),
-                  ),
-                  empty: () => const EmptyStateWidget(),
-                  error: (_) => const ErrorStateWidget(),
-                  success: (list) => ListView.separated(
-                    itemCount: list.length,
-                    separatorBuilder: (context, _) => const SizedBox(height: 20),
-                    itemBuilder: (context, index) => SightCard(sight: list[index]),
-                  ),
-                ),
+                child: switch (sightListState) {
+                  ListStateLoading() => Center(
+                      child: Lottie.asset('assets/animations/loading_sights.json', height: 65),
+                    ),
+                  ListStateEmpty() => const EmptyStateWidget(),
+                  ListStateError() => const ErrorStateWidget(),
+                  ListStateSuccess(sightList: final list) => ListView.separated(
+                      itemCount: list.length,
+                      separatorBuilder: (context, _) => const SizedBox(height: 20),
+                      itemBuilder: (context, index) => SightCard(sight: list[index]),
+                    ),
+                },
               ),
             ],
           ),

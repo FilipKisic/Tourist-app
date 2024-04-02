@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
 import 'package:tourist_app/features/common/presentation/widget/icon_button.dart';
 import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 import 'package:tourist_app/features/locations/presentation/widget/sight_details_sheet.dart';
 
-class SightDetailsScreen extends ConsumerWidget {
+class SightDetailsScreen extends HookConsumerWidget {
   const SightDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sight = ModalRoute.of(context)!.settings.arguments as Sight;
-    
+    var isFavorite = useState(sight.isFavorite);
+
     return Scaffold(
       backgroundColor: context.colorBackground,
       body: SafeArea(
@@ -42,14 +45,19 @@ class SightDetailsScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: SightDetailsSheet(sight: sight),
-            ),
+            Positioned(bottom: 0, child: SightDetailsSheet(sight: sight)),
             Positioned(
               top: MediaQuery.of(context).size.height * 0.33,
               right: 40,
-              child: CircularIconButton(onPressed: () {}, icon: Icons.favorite_outline_rounded),
+              child: CircularIconButton(
+                onPressed: () {
+                  isFavorite.value
+                      ? ref.read(favoriteListProvider.notifier).removeFavorite(sight)
+                      : ref.read(favoriteListProvider.notifier).setFavorite(sight);
+                  isFavorite.value = !isFavorite.value;
+                },
+                icon: isFavorite.value ? Icons.favorite_rounded : Icons.favorite_outline_rounded,
+              ),
             ),
           ],
         ),

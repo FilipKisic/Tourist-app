@@ -1,28 +1,62 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:hive/hive.dart';
 
-part 'generated/sight.g.dart';
+part 'sight.g.dart';
 
-@JsonSerializable()
-class Sight {
-  final String id;
-  final String title;
-  final String? description;
-  final String? address;
-  final double lat;
-  final double lng;
-  final int rating;
+@HiveType(typeId: 0)
+class Sight extends HiveObject {
+  @HiveField(0)
+  int id;
 
-  const Sight({
+  @HiveField(1)
+  String title;
+
+  @HiveField(2)
+  String? description;
+
+  @HiveField(3)
+  String? address;
+
+  @HiveField(4)
+  double lat;
+
+  @HiveField(5)
+  double lng;
+
+  @HiveField(6)
+  int rating;
+
+  @HiveField(7)
+  bool isFavorite;
+
+  Sight({
     required this.id,
     required this.title,
     this.description,
     this.address,
     required this.lat,
     required this.lng,
-    this.rating = 0,
+    required this.rating,
+    this.isFavorite = false,
   });
 
-  factory Sight.fromJson(final Map<String, dynamic> json) => _$SightFromJson(json);
+  @override
+  String toString() => '$id, $title, $lat, $lng';
 
-  Map<String, dynamic> toJson() => _$SightToJson(this);
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) {
+      return true;
+    }
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
+    return other is Sight &&
+        other.id == id &&
+        other.title == title &&
+        other.lat == lat &&
+        other.lng == lng;
+  }
+
+  @override
+  int get hashCode => Object.hash(id, title, lat, lng);
 }

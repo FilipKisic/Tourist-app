@@ -4,4 +4,7 @@ import 'package:tourist_app/features/locations/domain/entity/sight.dart';
 
 abstract interface class SightRepository {
   Future<Either<Failure, List<Sight>>> getAll();
+  List<Sight> getAllFavorites();
+  void setFavorite(Sight sight);
+  Future<void> removeFavorite(Sight sightId);
 }

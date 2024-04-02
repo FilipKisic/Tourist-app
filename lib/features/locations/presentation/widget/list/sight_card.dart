@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tourist_app/core/di.dart';
 import 'package:tourist_app/core/localization_extension.dart';
 import 'package:tourist_app/core/route_generator.dart';
 import 'package:tourist_app/core/style/style_extensions.dart';
@@ -76,9 +75,9 @@ class SightCard extends ConsumerWidget {
               ),
             ),
             GestureDetector(
-              onTap: () => log('Favorite pressed!'),
-              child: const Icon(
-                Icons.favorite_outline_rounded,
+              onTap: () => _toggleFavorite(ref, sight),
+              child: Icon(
+                sight.isFavorite ? Icons.favorite_rounded : Icons.favorite_outline_rounded,
                 color: Colors.white,
               ),
             )
@@ -86,6 +85,12 @@ class SightCard extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _toggleFavorite(final WidgetRef ref, final Sight sight) {
+    sight.isFavorite
+        ? ref.read(favoriteListProvider.notifier).removeFavorite(sight)
+        : ref.read(favoriteListProvider.notifier).setFavorite(sight);
   }
 
   void _redirectToDetailsScreen(final BuildContext context) =>

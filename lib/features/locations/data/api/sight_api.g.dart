@@ -13,7 +13,7 @@ class _SightAPI implements SightAPI {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://localhost:8080/sight';
+    baseUrl ??= 'http://10.0.2.2:8080/sight';
   }
 
   final Dio _dio;
@@ -21,13 +21,13 @@ class _SightAPI implements SightAPI {
   String? baseUrl;
 
   @override
-  Future<List<Sight>> getAllSights() async {
-    const _extra = <String, dynamic>{};
+  Future<List<SightDto>> getAllSights() async {
+    final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Sight>>(Options(
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<SightDto>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -44,7 +44,7 @@ class _SightAPI implements SightAPI {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Sight.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => SightDto.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
