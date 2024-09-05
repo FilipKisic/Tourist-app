@@ -41,8 +41,8 @@ class SightCard extends ConsumerWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: const Image(
-                image: AssetImage('assets/images/placeholder.jpg'),
+              child: Image(
+                image: NetworkImage(sight.imageUrl),
                 width: 130,
                 height: 100,
                 fit: BoxFit.cover,

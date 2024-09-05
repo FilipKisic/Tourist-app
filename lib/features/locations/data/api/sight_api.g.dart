@@ -13,7 +13,7 @@ class _SightAPI implements SightAPI {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://10.0.2.2:8080/sight';
+    baseUrl ??= 'http://127.0.0.1:8080/sight';
   }
 
   final Dio _dio;

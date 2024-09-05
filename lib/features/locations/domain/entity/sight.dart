@@ -28,6 +28,9 @@ class Sight extends HiveObject {
   @HiveField(7)
   bool isFavorite;
 
+  @HiveField(8)
+  String imageUrl;
+
   Sight({
     required this.id,
     required this.title,
@@ -37,6 +40,7 @@ class Sight extends HiveObject {
     required this.lng,
     required this.rating,
     this.isFavorite = false,
+    required this.imageUrl,
   });
 
   @override

@@ -12,6 +12,7 @@ class SightDtoToEntityConverter implements Converter<SightDto, Sight> {
         lat: dto.lat,
         lng: dto.lng,
         rating: dto.rating,
+        imageUrl: dto.imageUrl,
       );
 }
 
@@ -25,5 +26,6 @@ class SightEntityToDtoConverter implements Converter<Sight, SightDto> {
         lat: model.lat,
         lng: model.lng,
         rating: model.rating,
+        imageUrl: model.imageUrl,
       );
 }

@@ -11,6 +11,7 @@ class SightDto {
   final double lat;
   final double lng;
   final int rating;
+  final String imageUrl;
 
   const SightDto({
     required this.id,
@@ -20,6 +21,7 @@ class SightDto {
     required this.lat,
     required this.lng,
     this.rating = 0,
+    required this.imageUrl,
   });
 
   factory SightDto.fromJson(final Map<String, dynamic> json) => _$SightDtoFromJson(json);

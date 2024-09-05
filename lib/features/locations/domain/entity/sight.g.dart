@@ -25,13 +25,14 @@ class SightAdapter extends TypeAdapter<Sight> {
       lng: fields[5] as double,
       rating: fields[6] as int,
       isFavorite: fields[7] as bool,
+      imageUrl: fields[8] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Sight obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class SightAdapter extends TypeAdapter<Sight> {
       ..writeByte(6)
       ..write(obj.rating)
       ..writeByte(7)
-      ..write(obj.isFavorite);
+      ..write(obj.isFavorite)
+      ..writeByte(8)
+      ..write(obj.imageUrl);
   }
 
   @override

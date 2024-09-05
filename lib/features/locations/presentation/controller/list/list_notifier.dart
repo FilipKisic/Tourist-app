@@ -16,7 +16,6 @@ class SightListNotifier extends Notifier<ListState> {
 
   Future<void> getAll() async {
     state = ListStateLoading();
-
     final result = await _sightUseCases.getAllSights();
 
     result.fold(

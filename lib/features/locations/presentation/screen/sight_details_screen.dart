@@ -21,10 +21,10 @@ class SightDetailsScreen extends HookConsumerWidget {
         top: false,
         child: Stack(
           children: [
-            const Positioned(
+            Positioned(
               top: 0,
               child: Image(
-                image: AssetImage('assets/images/placeholder.jpg'),
+                image: NetworkImage(sight.imageUrl),
                 height: 350,
                 fit: BoxFit.cover,
               ),

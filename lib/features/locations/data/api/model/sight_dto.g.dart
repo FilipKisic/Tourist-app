@@ -14,6 +14,7 @@ SightDto _$SightDtoFromJson(Map<String, dynamic> json) => SightDto(
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
       rating: json['rating'] as int? ?? 0,
+      imageUrl: json['imageUrl'] as String,
     );
 
 Map<String, dynamic> _$SightDtoToJson(SightDto instance) => <String, dynamic>{
@@ -24,4 +25,5 @@ Map<String, dynamic> _$SightDtoToJson(SightDto instance) => <String, dynamic>{
       'lat': instance.lat,
       'lng': instance.lng,
       'rating': instance.rating,
+      'imageUrl': instance.imageUrl,
     };
