@@ -6,14 +6,16 @@ import 'package:tourist_app/features/auth/presentation/controller/state/auth_sta
 
 class AuthNotifier extends Notifier<AuthState> {
   late final AuthUseCases _authUseCases;
+  late final User? currentUser;
 
   @override
   AuthState build() {
     _authUseCases = ref.watch(authUseCasesProvider);
-    final currentUser = FirebaseAuth.instance.currentUser;
-    return currentUser == null
+    final user = FirebaseAuth.instance.currentUser;
+    currentUser = user;
+    return user == null
         ? const AuthState.unauthenticated(fromSignIn: true)
-        : AuthState.authenticated(currentUser);
+        : AuthState.authenticated(user);
   }
 
   Future<void> login(final String email, final String password) async {
@@ -21,8 +23,14 @@ class AuthNotifier extends Notifier<AuthState> {
     final result = await _authUseCases.loginUser(email, password);
 
     result.fold(
-      (error) => state = AuthState.unauthenticated(error: error, fromSignIn: true),
-      (user) => state = AuthState.authenticated(user!),
+      (error) {
+        state = AuthState.unauthenticated(error: error, fromSignIn: true);
+        currentUser = null;
+      },
+      (user) {
+        state = AuthState.authenticated(user!);
+        currentUser = user;
+      },
     );
   }
 
@@ -31,8 +39,14 @@ class AuthNotifier extends Notifier<AuthState> {
     final result = await _authUseCases.registerUser(email, password);
 
     result.fold(
-      (error) => state = AuthState.unauthenticated(error: error, fromSignIn: false),
-      (user) => state = AuthState.authenticated(user!),
+      (error) {
+        state = AuthState.unauthenticated(error: error, fromSignIn: false);
+        currentUser = null;
+      },
+      (user) {
+        state = AuthState.authenticated(user!);
+        currentUser = user;
+      },
     );
   }
 
